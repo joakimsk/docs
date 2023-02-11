@@ -1,9 +1,9 @@
-Template for the Read the Docs tutorial
-=======================================
+Documentation for Polaric Server project
+========================================
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
+Some the docs is about not only one 
+software compoent and it is nice to have a common
+starting point. 
 
-Read the tutorial here:
-
+We aim to test Read The Docs
 https://docs.readthedocs.io/en/stable/tutorial/
