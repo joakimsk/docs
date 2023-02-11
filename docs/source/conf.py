@@ -2,12 +2,12 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'Polaric Server'
+copyright = '2023, LA7ECA Øyvind Hanssen'
+author = 'ohanssen@acm.org'
 
-release = '0.1'
-version = '0.1.0'
+release = 'latest'
+version = 'latest'
 
 # -- General configuration
 
