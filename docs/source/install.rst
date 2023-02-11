@@ -2,8 +2,6 @@
 Installing Polaric Server
 =========================
 
-*Polaric Server* (*aprsd*) runs on a fairly standard JVM platform and the client (*webapp2*) runs on a fairly standard webserver (Apache 2 is currently supported). Deb packages are available to allow easy installation on several Linux distributions. Though we support the Linux platform, it is probably not hard to port it to other Unix or Windows platforms.
-
 This is a description how to install the *Polaric Server* software on a Debian based Linux platform. It consists of two main components: The APRS daemon (polaric-aprsd) and the Web application (*polaric-webapp2*). In addition there may be plugins. If you are unknown to Linux and Apache system administration, I recommend exploring this a little before attempting to install Polaric Server or that you get help from a friend. If you plan to put up a server permanently on the internet, you should know what you are doing, i.e. you should have some basic knowledge on internet security and firewall setup. I assume you login as *'root'* to be able to perform the installation ('`sudo su`') or prefix commands with *'sudo'*.
 
 The packages should work on Debian Stable (bullseye) systems (or later). It should probably also work on 'unstable' or 'testing' as well as recent Debian based distros like Ubuntu, Mint, Raspbian, Armbian, etc. Windows 10/11 with Linux subsystem (With Debian or Ubuntu) should probably work as well though I haven't tested much. It is important that the computer on which to install Polaric Server has a clock with correct time. It is recommended to install a ntp client ('`apt install ntp`'). Polaric Server can alternatively use a GPS to adjust the host computer's clock. 
