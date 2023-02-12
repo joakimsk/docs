@@ -18,7 +18,7 @@ The most used properties are handled by a web-interface and are stored in in ano
 ``httpserver.auth.key``      Secret key for authentication between servers [1]_
 ``httpserver.securesession`` Use secure flag (force HTTPS) for login session
 ``httpserver.alloworigin``   Origin-URLs accepted for CORS access (regular expression).
-``httpserver.passwdfile``    Location of static files available to backend webserver
+``httpserver.filedir``       Location of static files available to backend webserver
 ``aprsd.log.level``          What to be reported in log file (level 0-4)
 ``channel.logpackets``       Show incoming APRS packets in log file
 ``remotectl.userinfo``       Send logon usernames to other servers over APRS [2]_

@@ -2,9 +2,9 @@
 Installing Polaric Server
 =========================
 
-This is a description how to install the *Polaric Server* software on a Debian based Linux platform. It consists of two main components: The APRS daemon (polaric-aprsd) and the Web application (*polaric-webapp2*). In addition there may be plugins. If you are unknown to Linux and Apache system administration, I recommend exploring this a little before attempting to install Polaric Server or that you get help from a friend. If you plan to put up a server permanently on the internet, you should know what you are doing, i.e. you should have some basic knowledge on internet security and firewall setup. I assume you login as *'root'* to be able to perform the installation ('`sudo su`') or prefix commands with *'sudo'*.
+This is a description how to install the *Polaric Server* software on a *Debian* based Linux platform. It consists of two main components: The APRS daemon (*polaric-aprsd*) and the Web application (*polaric-webapp2*). In addition there may be plugins. If you are unknown to Linux and Apache system administration, I recommend exploring this a little before attempting to install Polaric Server or that you get help from a friend. If you plan to put up a server permanently on the internet, you should know what you are doing, i.e. you should have some basic knowledge on internet security and firewall setup. I assume you login as *'root'* to be able to perform the installation ('`sudo su`') or prefix commands with *'sudo'*.
 
-The packages should work on Debian Stable (bullseye) systems (or later). It should probably also work on 'unstable' or 'testing' as well as recent Debian based distros like Ubuntu, Mint, Raspbian, Armbian, etc. Windows 10/11 with Linux subsystem (With Debian or Ubuntu) should probably work as well though I haven't tested much. It is important that the computer on which to install Polaric Server has a clock with correct time. It is recommended to install a ntp client ('`apt install ntp`'). Polaric Server can alternatively use a GPS to adjust the host computer's clock. 
+The packages should work on Debian stable (*bullseye*) systems (or later). It should probably also work on 'unstable' or 'testing' as well as recent Debian based distros like Ubuntu, Mint, Raspbian, Armbian, etc. Windows 10/11 with Linux subsystem (With Debian or Ubuntu) should probably work as well though I haven't tested much. It is important that the computer on which to install *Polaric Server* has a clock with correct time. It is recommended to install a *`ntp`* client ('`apt install ntp`'). *Polaric Server* can alternatively use a GPS to adjust the host computer's clock. 
 
 Debian Repository
 -----------------
@@ -49,7 +49,7 @@ The server can be restarted through the web config interface or by issuing the c
 Installing the web-application
 ------------------------------
 
-Webapp2 is the new client software. Source code is on https://github.com/PolaricServer/webapp2. The Debian package installs this automatically assuming that an aprsd instance is running on the same machine. It is possible to install it without aprsd (for advanced users). You can install the web-application component as follows::
+Webapp2 is the new client software. Source code is on `Github <https://github.com/PolaricServer/webapp2>`_. The deb package installs this automatically assuming that an aprsd instance is running on the same machine. It is possible to install it without aprsd (for advanced users). You can install the web-application component as follows::
 
     apt-get install polaric-webapp2
 
@@ -57,22 +57,24 @@ And you will get a basic installation with OSM (OpenStreetMap) and Norwegian map
 
 By default the webapp can be accessed through http://hostname/aprs where hostname is the ip adress or host name of the machine it is running on. If it is on your own computer, localhost or 127.0.0.1 should do.
 
-You can log in as 'admin' using this web-interface. Then you have access to configuration and user-management of the system.
+You can log in as *'admin'* using this web-interface. Then you have access to configuration and user-management of the system.
 
 Configuring the webapp
 ----------------------
 
-The following file is important. Review it and edit if necessary. Here you may change setup of backend-server, map-layers, default map views and filters: It is a Javascript file which is run on clients, but even if you don't know Javascript very well, it should be fairly self-explanatory wrt. the most important configuration options::
+The following file is the most important place to change configuration. You may review it and edit if necessary. Here you may change setup of backend-server, map-layers, default map views and filters: It is a Javascript file which is run on clients, but even if you don't know Javascript very well, it should be fairly self-explanatory wrt. the most important configuration options::
 
     /etc/polaric-webapp2/config.js 
 
-The server runs a mapcache instance. It is configured in the following file (See mapcache documentation and the explanations in the file itself for more info)::
+The server runs a `Mapcache <https://mapserver.org/mapcache/>`_ instance. It is configured in the following file (See mapcache documentation and the explanations in the file itself for more info)::
 
     /etc/polaric-webapp2/mapcache.xml
 
 To change the Apache webserver setup for the application, you may edit::
 
     /etc/apache2/sites-enabled/aprs.conf
+    
+If you are outside Norway you may want to change the map-layer setups (`config.js` and `mapcache.xml`). I hope to be able to provide better documentation for this. Anyway, you may find information on how to set up map layers in the `OpenLayers documentation <http://www.openlayers.org>`_. Map-layers may also be added in the web interface for individual users. If anyone wants to share their setups, it would be helpful! 
  
   
 Installing plugins
@@ -80,7 +82,7 @@ Installing plugins
 
 Plugins are optional and easy to install. Plugins with available deb packages are:
 
- * **polaric-db-plugin**. It uses a PostgreSQL database for storage and search. It can store APRS traffic 
+ * **polaric-db-plugin**. It uses a `PostgreSQL <https://www.postgresql.org>`_ database for storage and search. It can store APRS traffic 
    to generate historical trails, it can store user-data, etc. It comes with a scripts to help installing 
    and configuring the database, but it may need some additional configuration.
  * **polaric-ais-plugin**. It implements integration of AIS datastream (over TCP). It depends on polaric-aprsd.
@@ -95,8 +97,8 @@ What to consider:
 
 * Where to run the server. In a data center? How to secure it, run it in a DMZ?
 * Domain name? Virtual host setup?
-* Secure the webserver using TLS/SSL. Then you will need certificates for your domain. Consider if you want to force the users to use https always or when logging in to avoid that passwords or other sensitive information is sent in clear.
-* The backend (aprsd) by default uses a special port (8081). I recommend to set up the webserver as a proxy for this. This can easily be done with Apache for both REST API and websocket connections.
+* Secure the (frontend) webserver using TLS/SSL. Then you will need certificates for your domain. Consider if you want to force the users to use https always or when logging in to avoid that passwords or other sensitive information is sent in clear.
+* The backend (aprsd) by default uses a special port (8081). If the server is to be used across different subnets, I recommend to set up the frontend webserver as a proxy for this. This can easily be done with Apache for both REST API and websocket connections.
 * You may need to set up some redirects and URL rewrites to make it work smoothly.
 
 
