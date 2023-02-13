@@ -1,6 +1,6 @@
  
-REST API
-========
+REST API for clients
+====================
 
 This document summarises the RESTful API to the Polaric-aprsd backend server. This is used by clients running in standard web-browsers. By default it accepts HTTP requests on port 8081. It is also possible to configure a frontend webserver to act as a proxy for this, so that all HTTP requests to the server-side can go through the standard HTTP port (80). Servers where this is done do therefore not normally need to expose port 8081 externally. A cookie-based session scheme is used for logins. This means that if a user logs on a server a session is established that will used for subsequent REST requests. A session lasts until logging out or the server is restarted. For security I recommend to always use HTTPS if clients and servers are on different LANs. Cross-site requests are possible within certain limits. CORS is supported.
 
@@ -10,25 +10,12 @@ Most services will require authorization: O=open, L=login, S=SAR, A=admin.
 
 
 
-System services summary
------------------------
+System services
+---------------
+Source: `AdminApi.java` and `ShellScriptApi.java`
 
 +------------------------+-------+-+------------------------------------------------------+
-|`/authStatus``          | GET   |O| Get authorization info. Returns AuthInfo object      |
-+------------------------+-------+-+------------------------------------------------------+
-|`/groups``              | GET   |A| Return a list of groups (group-id, group-name)       |
-+------------------------+-------+-+------------------------------------------------------+
-|`/user`                 | GET   |A| Get the list of users (userid, last used time)       |
-|                        +-------+-+------------------------------------------------------+
-|                        | POST  |A| Add user                                             |
-+------------------------+-------+-+------------------------------------------------------+
-|`/user/{id}`            | GET   |A| Get info about a given user                          |
-|                        +-------+-+------------------------------------------------------+
-|                        | PUT   |A| Update info about a given user                       |
-|                        +-------+-+------------------------------------------------------+
-|                        | DELETE|A| Remove a user                                        |
-+------------------------+-------+-+------------------------------------------------------+
-|`/usernames`            | GET   |A| Get a list of users (just userids)                   |
+|`/authStatus`           | GET   |O| Get authorization info. Returns AuthInfo object      |
 +------------------------+-------+-+------------------------------------------------------+
 |`/system/tags`          | GET   |O| Get tags used                                        |
 +------------------------+-------+-+------------------------------------------------------+
@@ -36,15 +23,55 @@ System services summary
 |                        +-------+-+------------------------------------------------------+
 |                        | PUT   |A| Update position of this server (symbol, latlong pos) |
 +------------------------+-------+-+------------------------------------------------------+
-|`/system/sarmode`       | GET   |S| SAR mode info. null means SAR mode is off.           |
+|`/system/sarmode`       | GET   |S| SAR mode info. null means SAR mode is off            |
 |                        +-------+-+------------------------------------------------------+
-|                        | PUT   |S| Update SAR mode info. null to turn it off.           |
+|                        | PUT   |S| Update SAR mode info. null to turn it off            |
 +------------------------+-------+-+------------------------------------------------------+
-|`/system/icons/{dir}`   | GET   |O| List of icons available in a subdirectory.           |
+|`/system/icons/{dir}`   | GET   |O| List of icons available in a subdirectory            |
 +------------------------+-------+-+------------------------------------------------------+
-|`/user/{id}/alias`      | GET   |S| Alias for tracker with id (callsign).                |
+|`/scripts`              | GET   |A| Get list of available commands/scripts               |
++------------------------+-------+-+------------------------------------------------------+
+|`/scripts/{script-id}`  | GET   |A| Execute a script/command                             |
++------------------------+-------+-+------------------------------------------------------+
+
+
+
+Users and clients
+-----------------
+Source: `UserApi.java`
+
++------------------------+-------+-+------------------------------------------------------+
+|`/filters`              | GET   |L| Get filters available for you                        |
++------------------------+-------+-+------------------------------------------------------+
+|`/mypasswd`             | PUT   |L| Change your own password                             |
++------------------------+-------+-+------------------------------------------------------+
+|`/wsclients`            | GET   |A| Get (websocket) clients                              |
++------------------------+-------+-+------------------------------------------------------+
+|`/loginusers`           | GET   |A| Get logged in users (list of userids)                |
++------------------------+-------+-+------------------------------------------------------+
+|`/groups`               | GET   |A| Get available groups (roles)                         |
++------------------------+-------+-+------------------------------------------------------+
+|`/usernames`            | GET   |L| Get list of all users (userids only)                 |
++------------------------+-------+-+------------------------------------------------------+
+|`/users`                | GET   |A| Get list of all users                                |
 |                        +-------+-+------------------------------------------------------+
-|                        | PUT   |S| Set alias for tracker with id (callsign).            |
+|                        | POST  |A| Add a user                                           |
++------------------------+-------+-+------------------------------------------------------+
+|`/users/{id}`           | GET   |A| Get info about a given user                          |
+|                        +-------+-+------------------------------------------------------+
+|                        | PUT   |A| Update a user                                        |
+|                        +-------+-+------------------------------------------------------+
+|                        | DELETE|A| Remove a user                                        |
++------------------------+-------+-+------------------------------------------------------+
+
+
+
+Items (tracker objects)
+-----------------------
+Source: `ItemApi.java`
+
++------------------------+-------+-+------------------------------------------------------+
+|`/item/{id}/info`       | GET   |O| Get info about a tracker                             |
 +------------------------+-------+-+------------------------------------------------------+
 |`/item/{id}/trail`      | GET   |O| Get trail of moving tracker. List of points.         |
 +------------------------+-------+-+------------------------------------------------------+
@@ -60,11 +87,32 @@ System services summary
 +------------------------+-------+-+------------------------------------------------------+
 |`/items`                | GET   |O| Search items (query parameters)                      |
 +------------------------+-------+-+------------------------------------------------------+
+|`/item/{id}/alias`      | GET   |S| Alias for tracker with id (callsign).                |
+|                        +-------+-+------------------------------------------------------+
+|                        | PUT   |S| Set alias for tracker with id (callsign).            |
++------------------------+-------+-+------------------------------------------------------+
+
+
+
+APRS Telemetry
+--------------
+Source: `ItemApi.java`
+
++-------------------------+-------+-+------------------------------------------------------+
+|`/telemetry/{id}/descr`  | GET   |O| Get telemetry description for a given item           |
++-------------------------+-------+-+------------------------------------------------------+
+|`/telemetry/{id}/meta`   | GET   |O| Get telemetry metadata for a given item              |
++-------------------------+-------+-+------------------------------------------------------+
+|`/telemetry/{id}/current`| GET   |O| Get telemetry current report for a given item        |
++-------------------------+-------+-+------------------------------------------------------+
+|`/telemetry/{id}/history`| GET   |O| Get telemetry history report for a given item        |
++-------------------------+-------+-+------------------------------------------------------+
 
 
 
 Own APRS objects 
 ----------------
+Source: `AprsObjectApi.java`
 
 +------------------------+-------+-+------------------------------------------------------+
 |`/aprs/objects`         | GET   |S| Get the list of active objects (owned by this server)|
@@ -77,8 +125,10 @@ Own APRS objects
 +------------------------+-------+-+------------------------------------------------------+
 
 
+
 Short messages
 --------------
+Source: `MailBoxApi.java`
 
 +------------------------+-------+-+------------------------------------------------------+
 |`/mailbox`              | GET   |L| Get content of mailbox (list of messages)            |
@@ -88,5 +138,40 @@ Short messages
 |`/mailbox/{msg-id}`     | DELETE|L| Delete a message from mailbox                        |
 +------------------------+-------+-+------------------------------------------------------+
 
+
+
+APRS Bulletins
+--------------
+Source: `BullBoardApi.java`
+
++-----------------------------------------+-----+-+-------------------------------------------------+
+|`/bullboard/groups`                      | GET |O| List of active bulletin groups                  |
++-----------------------------------------+-----+-+-------------------------------------------------+
+|`/bullboard/{groupid}/senders`           | GET |O| List of callsigns of senders to a given group   |
++-----------------------------------------+-----+-+-------------------------------------------------+
+|`/bullboard/{groupid}/messages`          | GET |O| Get all messages in a group                     |
+|                                         +-----+-+-------------------------------------------------+
+|                                         | POST|L| Submit a bulletin                               |
++-----------------------------------------+-----+-+-------------------------------------------------+
+|`/bullboard/{groupid}/messages/{sender}` | GET |O| Bulletins from a given sender in a group        |
++-----------------------------------------+-----+-+-------------------------------------------------+
+
+
+
+SAR (Search and Rescue)
+-----------------------
+Source: `SarApi.java`
+
++------------------------+-------+-+------------------------------------------------------+
+|`/sar/ipp`              | GET   |L| Get a list of IPPs (with distance rings) for user    |
+|                        +-------+-+------------------------------------------------------+
+|                        | POST  |L| Add a IPP (with distance rings)                      |
++------------------------+-------+-+------------------------------------------------------+
+|`/sar/ipp/{id}`         | GET   |L| Get a specific IPP                                   |
+|                        +-------+-+------------------------------------------------------+
+|                        | PUT   |L| Update a specific IPP                                |
+|                        +-------+-+------------------------------------------------------+
+|                        | DELETE|L| Remove a IPP                                         |
++------------------------+-------+-+------------------------------------------------------+
 
 
