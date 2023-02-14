@@ -5,5 +5,6 @@ Interfaces and protocols
 .. toctree::
 
    remotectl
-   restapi
    clientauth
+   restapi
+   restapi2

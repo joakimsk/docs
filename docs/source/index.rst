@@ -41,7 +41,6 @@ Contents
 --------
 
 .. toctree::
-   :titlesonly:
    
    concepts
    gettingstarted
