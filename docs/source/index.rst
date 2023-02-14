@@ -1,3 +1,4 @@
+
 Welcome to Polaric Server documentation!
 ========================================
 
@@ -29,6 +30,8 @@ Main features
 * Plugin with database support (PostgreSQL with GIS extension) for safe storage of important information and storage and retrieval of tracking (trails) from the past. Useful for looking up information about past missions. Database plugin also supports (eventual consistency) synchronisation of some data with other server instances.
 
 
+Some of its use is discussed in `this book chapter <https://doi.org/10.5772/intechopen.75371>`_ and `ISCRAM 2015 paper <http://idl.iscram.org/files/oyvindhanssen/2015/1211_OyvindHanssen2015.pdf>`_ and `ISCRAM 2021 paper <http://idl.iscram.org/files/oyvindhanssen/2021/2350_OyvindHanssen2021.pdf>`_. 
+
 Copyright and license
 ---------------------
 
@@ -38,7 +41,8 @@ Contents
 --------
 
 .. toctree::
-
+   :titlesonly:
+   
    concepts
    gettingstarted
    config
