@@ -9,7 +9,7 @@ In this chapter we give a guide to the overall architecture and main features of
 Overall architecture
 --------------------
 
-tbd
+.. image:: img/architecture1.jpg
 
 
 Supported geographical objects
