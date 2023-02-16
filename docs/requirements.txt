@@ -1,1 +1,1 @@
-spinxcontrib-httpdomain = 1.8.1
+sphinxcontrib-httpdomain = 1.8.1
