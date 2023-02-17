@@ -4,7 +4,8 @@ Interfaces and protocols
 
 .. toctree::
 
-   remotectl
    clientauth
    restapi
+   cwebsocket   
    restapi2
+   remotectl
