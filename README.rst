@@ -6,7 +6,7 @@ The docs is produced using Sphinx and published using Read The Docs.
 
 It is available at:
 
-https://polaricserver.readthedocs.io`
+https://polaricserver.readthedocs.io
 
 And (redirect) from: 
 
