@@ -31,7 +31,7 @@ Where the parameters are:
 
 Update format
 ^^^^^^^^^^^^^
-Updates are sent to client when there is a change within the area of interest. The frequency of updates is limited to max 1 per 10 seconds. Updates are in JSON format. Note that when the connection is made and *before* a `SUBSCRIBE` command is issued, an empty **JsOverlay** object is sent to client (where points, delete, lines an pcloud is null). 
+Updates are sent to client when there is a change within the area of interest. The frequency of updates is limited to max 1 per 10 seconds. Updates are in JSON format. Note that when the connection is made and *before* a `SUBSCRIBE` command is issued, an empty **JsOverlay** object is sent to client (where points, delete, lines and pcloud is null). 
 
 **JsOverlay** (top level object):
 

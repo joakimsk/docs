@@ -1,8 +1,8 @@
  
-Customizing filter scripts
-==========================
+Customizing filter script
+=========================
 
-Polaric Server can configured with a set of filters. Filters may (1) do automatic tagging of points or (2) define what items are displayed on the map and how. Filters are defined in `/etc/polaric-aprsd/view.profiles` and this file is automatically compiled when the aprsd starts up. Errors in script are reported in the log file. It is also possible to check that the filter-script file is correct by running the following command in the shell::
+*Polaric Server* can configured with a set of filters. Filters may (1) do automatic tagging of points or (2) define what items are displayed on the map and how. Filters are defined in `/etc/polaric-aprsd/view.profiles` and this file is automatically compiled when the aprsd starts up. Errors in script are reported in the log file. It is also possible to check that the filter-script file is correct by running the following command in the shell::
 
     polaric-checkfilter
 

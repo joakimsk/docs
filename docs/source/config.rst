@@ -1,6 +1,6 @@
  
 Advanced Configuration
-----------------------
+**********************
 
 .. toctree::
 

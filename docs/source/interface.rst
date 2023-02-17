@@ -1,6 +1,6 @@
 
 Interfaces and protocols
-========================
+************************
 
 .. toctree::
 

@@ -1,6 +1,6 @@
  
 Concepts
-========
+********
 
 In this chapter we give a guide to the overall architecture and main features of Polaric Server. 
 
