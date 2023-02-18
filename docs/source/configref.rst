@@ -7,6 +7,9 @@ Polaric-aprsd is a rather advanced piece of software. It can be configured many 
 Configuration file: server.ini
 ------------------------------
 
+.. note::
+    This will be supported from aprsd version 2.12
+    
 The most used properties are handled by a web-interface and are stored in in another file: */var/lib/polaric/config.xml*. This file should not be edited by hand. For more advanced needs we can edit *server.ini* to configure aprsd. It contains some additional «properties» consisting of name-value pairs. Comment lines start with '#'. There are explanations in the file. The table below summarizes what properties which may be set in this file.
 
 ============================ ===================================================================
