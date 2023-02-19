@@ -6,8 +6,8 @@ In this chapter we give a guide to the architecture and main features of Polaric
 
 **This chapter is work in progress. Feedback is welcome!**
 
-Software architecture
----------------------
+Software architecture overview
+------------------------------
 
 *Polaric-Server* is a client/server application, where users run the client-app in their web-browsers. The figure below shows the most important parts of this. A server typically serves the *Polaric-Webapp2* component which is mainly written in Javascript. It functions a GIS client that can browse map-layers from various sources, let the user draw featurs on the map, etc. It is based on `OpenLayers <http://www.openlayers.org>`_. 
 
@@ -17,7 +17,7 @@ Software architecture
 
 It is also a client for the *Polaric-aprsd*; we call it the *'backend-server'*. It is a http server that runs on a different port than the frontend. *Polaric-aprsd* handles more dynamic position information, typically moving objects. It provides a REST API to clients for performing various operation, as well as a Websockets to push updates and notifications asynchronously. It offers an innovative way of filtering what the user sees (and how), and a way to use tags to help filtering and searching items. It offers user-login and role-based authorization.
 
-Aprsd is primarily an *APRS client* (and even an APRS igate if configured to do so); it can use a radio or the APRS-IS network to send or receive APRS packets. It is not limited to APRS datasources, it can handle other datasources like e.g. AIS by using *plugins*. Plugins is a way to extend aprsd's functionality. A special and important plugin is the *database-plugin* which uses a PostgreSQL database (PostGIS) to extend the capabilities of aprsd a lot. It can store tracking-data and let users search historical trails or see snapshots at particular time-instants. It can store user-defined features, map-views or map-layers and it can synchronize some information with other server-instances.  
+Aprsd is primarily an *APRS client* (and even an APRS igate if configured to do so); it can use a radio or the APRS-IS network to send or receive APRS packets. It is not limited to APRS datasources, it can handle other datasources like e.g. AIS by using *plugins*. Plugins is a way to extend aprsd's functionality. A special and important plugin is the *database-plugin* which uses a PostgreSQL database (PostGIS) to extend the capabilities of aprsd a lot. It can store tracking-data and let users search historical trails or see snapshots at particular time-instants. It can store user-defined features and it can synchronize some information with other server-instances.  
 
 
 Supported geographical objects
