@@ -12,7 +12,7 @@ And (redirect) from:
 
 https://aprs.no/polaricserver
 
-Most of the earlier Dokuwiki based doc has now beenb moved over and updated. More is underway. Still, it is considerable task to document everything well. User documentation would be nice but is not currently part of this. 
+Most of the earlier Dokuwiki based doc has now been moved over and updated. More documentation is underway. Still, it is considerable task to document everything well. User documentation would be nice but is not currently part of this.
 
 Feedback is welcome! Contributions are welcome!
 
