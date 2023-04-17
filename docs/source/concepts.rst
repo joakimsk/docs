@@ -81,6 +81,8 @@ Suggested general tags:
 Filters
 -------
 
+To deal with information overflow, we can define filters that configure what dynamic geographical objects are to be shown on the map and how those are shown. The user can select among pre-defined filters. Filters are defined in a special script containing rules. 
+
 tbd
 
 
