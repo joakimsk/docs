@@ -85,6 +85,5 @@ To deal with information overflow, we can define filters that configure what dyn
 
 In the filter script we can also define rules for auto-tagging (see above). 
 
-tbd
-
+The webapp client get a list of available filters from the server and present those in a menu to allow the user to select.
 
