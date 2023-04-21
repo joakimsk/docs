@@ -40,7 +40,7 @@ When the certificate is imported, you can activate HTTPS mode by editing `/etc/p
 Configuring the client
 ^^^^^^^^^^^^^^^^^^^^^^
 
-You can tell the clients to use HTTPS mode by commenting out this line in `/etc/polaric-webapp2/config.js`::
+You can tell the clients to use HTTPS mode by using this line in `/etc/polaric-webapp2/config.js`::
     
     SECURE(true)
     
