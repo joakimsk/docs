@@ -156,8 +156,60 @@ Source: `BullBoardApi.java`
 |`/bullboard/{groupid}/messages/{sender}` | GET |O| Bulletins from a given sender in a group        |
 +-----------------------------------------+-----+-+-------------------------------------------------+
 
+.. http:get:: /bullboard/groups
+
+   Returns a list of active bulleti groups
+   
+   :status 200: Ok
+   :>jsonarr string id: Group id 
+
+   
+.. http:get:: /bullboard/(groupid)/senders
+
+   Returns a list of callsigns that have posted messages to the group
+   
+   :status 200: Ok
+   :status 404: Group not found.
+   
+   :>jsonarr string id: Callsign of sender 
 
 
+.. http:get:: /bullboard/(groupid)/messages
+
+   Returns all messages in a group. Note that this returns a list of lists
+   
+   :status 200: Ok
+   :status 404: Group not found.
+   
+   :>jsonarr string id: Callsign of sender 
+   :>jsonarr Bulletin[]: List of bulletins (several attributes)
+   
+   
+.. http:post:: /bullboard/(groupid)/messages
+
+   Post a bulletin to a group
+
+   :status 200: Ok  
+   :status 401: No callsign registered for user.
+   :status 400: Cannot parse input
+   
+   :<json string bullid: Index for bulletin
+   :<json string groupid: Group identifier
+   :<json string text: Text of bulletin
+   
+
+.. http:get:: /bullboard/(groupid)/messages(sender)
+
+   Returns messages in a group posted by a specific sender. Note that this returns a list of lists
+   
+   :status 200: Ok
+   :status 404: Group not found.
+   
+   :>jsonarr string id: Callsign of sender 
+   :>jsonarr Bulletin[]: List of bulletins (several attributes)
+
+   
+   
 SAR (Search and Rescue)
 -----------------------
 Source: `SarApi.java`
@@ -174,4 +226,86 @@ Source: `SarApi.java`
 |                        | DELETE|L| Remove a IPP                                         |
 +------------------------+-------+-+------------------------------------------------------+
 
+.. http:get:: /sar/ipp
+
+   Returns a list of IPPs for the given user.
+   
+   :status 200: Ok
+   :status 500: No authorization info found.
+   
+   :>jsonarr string id: Unique identifier 
+   :>jsonarr string descr: Descripttion of IPP
+   :>jsonarr double[] pos: Position of IPP (longitude, latitude)
+   :>jsonarr float p25: Radius (meters) of 25% distance ring 
+   :>jsonarr float p50: Radius (meters) of 50% distance ring 
+   :>jsonarr float p75: Radius (meters) of 75% distance ring 
+   :>jsonarr float p95: Radius (meters) of 95% distance ring 
+   
+   
+.. http:post:: /sar/ipp
+
+   Add a IPP
+
+   :status 200: Ok  
+   :status 500: No authorization info found.
+   :status 400: Cannot parse input
+   
+   :<json string id: Unique identifier for ipp
+   :<json string descr: Description of IPP
+   :<json double[] pos: Position of IPP (longitude, latitude)
+   :<json float p25: Radius (meters) of 25% distance ring 
+   :<json float p50: Radius (meters) of 50% distance ring    
+   :<json float p75: Radius (meters) of 75% distance ring 
+   :<json float p95: Radius (meters) of 95% distance ring 
+
+   
+.. http:get:: /sar/ipp/(id)
+
+   Returns a specific IPP
+   
+   :parameter id: Unique indentifier of IPP
+   
+   :status 200: Ok
+   :status 500: No authorization info found.
+   :status 404: Not found.
+   
+   :>json string id: Unique identifier 
+   :>json string descr: Descripttion of IPP
+   :>json double[] pos: Position of IPP (longitude, latitude)
+   :>json float p25: Radius (meters) of 25% distance ring 
+   :>json float p50: Radius (meters) of 50% distance ring 
+   :>json float p75: Radius (meters) of 75% distance ring 
+   :>json float p95: Radius (meters) of 95% distance ring 
+   
+   
+      
+.. http:put:: /sar/ipp/(id)
+
+   Update a specific IPP
+   
+   :parameter id: Unique indentifier of IPP
+   
+   :status 200: Ok
+   :status 500: No authorization info found. 
+   :status 400: Cannot parse input
+   :status 404: Not found.
+   
+   :<json string id: Unique identifier 
+   :<json string descr: Descripttion of IPP
+   :<json double[] pos: Position of IPP (longitude, latitude)
+   :<json float p25: Radius (meters) of 25% distance ring 
+   :<json float p50: Radius (meters) of 50% distance ring 
+   :<json float p75: Radius (meters) of 75% distance ring 
+   :<json float p95: Radius (meters) of 95% distance ring 
+   
+   
+
+.. http:delete:: /sar/ipp/(id)
+   
+   Delete an IPP
+   
+   :parameter id: Unique indentifier of IPP
+
+   :status 200: Ok
+   :status 500: No authorization info found.
 
