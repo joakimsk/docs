@@ -23,19 +23,111 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
 |                        +-------+-+------------------------------------------------------+
 |                        | PUT   |A| Update position of this server (symbol, latlong pos) |
 +------------------------+-------+-+------------------------------------------------------+
-|`/system/sarmode`       | GET   |S| SAR mode info. null means SAR mode is off            |
+|`/system/sarmode`       | GET   |S| SAR mode info. Deprecated                            |
 |                        +-------+-+------------------------------------------------------+
-|                        | PUT   |S| Update SAR mode info. null to turn it off            |
+|                        | PUT   |S| Update SAR mode info. Deprecated                     |
 +------------------------+-------+-+------------------------------------------------------+
 |`/system/icons/{dir}`   | GET   |O| List of icons available in a subdirectory            |
 +------------------------+-------+-+------------------------------------------------------+
 |`/scripts`              | GET   |A| Get list of available commands/scripts               |
 +------------------------+-------+-+------------------------------------------------------+
-|`/scripts/{script-id}`  | GET   |A| Execute a script/command                             |
+|`/scripts/{script-id}`  | POST  |A| Execute a script/command                             |
 +------------------------+-------+-+------------------------------------------------------+
 
+.. http:get:: /authStatus
+
+   Returns AuthInfo object with authorization info about current session 
+   
+   :status 200: Ok
+   :>json string userid: Userid if logged in
+   :>json string groupid: Current role (group)
+   :>json string callsign: HAM radio callsign (can be null)
+   :>json string servercall: Identfier (callsign) of the server
+   :>json boolean admin: True if admin privileges
+   :>json boolean sar: True if SAR privileges (derived from role)
+   :>json string tagsAuth: What tags that authorize you (regular expression)
+   :>json string[] services: List of services of server instance 
 
 
+.. http:get:: /system/tags
+
+   Get list of all tags used on the system
+    
+   :status 200: Ok
+   :>jsonarr string tag: Tag used
+   
+   
+.. http:get:: /system/ownpos
+
+   Get position of this server (symbol, latlong pos) 
+    
+   :status 200: Ok
+   :>json string sym: Symbol
+   :>json string symtab: Symbol table
+   :>json double[] pos: Position (longitude, latitude);
+   
+
+.. http:put:: /system/ownpos
+
+   Aet position of this server (symbol, latlong pos) 
+    
+   :status 200: Ok
+   :status 400: Couldn't parse input
+   :>json string sym: Symbol
+   :>json string symtab: Symbol table
+   :>json double[] pos: Position (longitude, latitude);
+   
+   
+.. http:get:: /system/sarmode
+
+   Deprecated - do not use
+   
+   
+.. http:put:: /system/sarmode
+
+   Deprecated - do not use
+   
+   
+.. http:get:: /system/icons/(dir)
+
+   List of icons available in a subdirectory 
+   
+   :parameter userid: Unique indentifier of user
+   :status 200: Ok 
+   :status 500: Invalid file subdirectory for icons
+
+   :>jsonarr string icon: Filename of icon
+   
+   
+.. http:get:: /system/scripts
+
+   Get list of available commands/scripts    
+    
+   :status 200: Ok
+   :>jsonarr string name: Name (id) of script/command
+   :>jsonarr string descr: Description
+   
+
+   
+.. http:get:: /system/scripts/(script-id)
+
+   Execute a command/scripts    
+
+   :parameter script-id: Script identifier (name)
+   :status 200: Ok 
+   :status 400: Couldn't parse input
+   :status 404: Script xxx not found
+   :status 400: Script xxx: Missing arguments
+   :status 400: Script xxx: Expected m arguments, got n
+   :status 500: Script xxx: Exceeded max time. Killed!
+   :status 500: Script xxx: (error-message from script)
+   
+   :>json string[] args: Arguments to be passed to the script
+
+   
+   
+   
+   
 Users and clients
 -----------------
 Source: `UserApi.java`
@@ -51,6 +143,8 @@ Source: `UserApi.java`
 +------------------------+-------+-+------------------------------------------------------+
 |`/groups`               | GET   |A| Get available groups (roles)                         |
 +------------------------+-------+-+------------------------------------------------------+
+|`/mygroup`              | PUT   |L| Change your own group/role                           |
++------------------------+-------+-+------------------------------------------------------+
 |`/usernames`            | GET   |L| Get list of all users (userids only)                 |
 +------------------------+-------+-+------------------------------------------------------+
 |`/users`                | GET   |A| Get list of all users                                |
@@ -64,8 +158,160 @@ Source: `UserApi.java`
 |                        | DELETE|A| Remove a user                                        |
 +------------------------+-------+-+------------------------------------------------------+
 
+.. http:get:: /filters
+
+   Returns a list of filters available for you as a logged in user. 
+   
+   :status 200: Ok
+   :>jsonarr string[] filter: Pair - filter name, description
 
 
+.. http:get:: /mypasswd
+
+   Change your own password
+   
+   :status 200: Ok
+   :status 404: Unknown user
+   :<json string passwd: New password
+   
+   
+.. http:get:: /wsclients
+
+   Get currently active clients to (the websocket interface)
+   
+   :status 200: Ok
+   :>jsonarr string uid: User id (IP-address:port)
+   :>jsonarr string username: Login name (if logged in)
+   :>jsonarr Date created: Time when client connection was created
+
+
+.. http:get:: /wsclients
+
+   Get currently logged in users
+   
+   :status 200: Ok
+   :>jsonarr string uid: Userid (login name)
+   
+   
+.. http:get:: /groups
+
+   Get groups (roles) available for logged in user
+   
+   :status 200: Ok
+   :>jsonarr string gid: Group id
+   
+
+.. http:get:: /mygroup
+
+   Change your own group/role (for the session)
+   
+   :status 200: Ok
+   :status 404: Unknown user
+   :status 404: Unknown group
+   :status 403: Group is not allowed
+   
+   :>jsonarr string group: Group id
+   
+
+.. http:get:: /usernames
+
+   Return a list of usernames (userids only)
+   
+   :status 200: Ok
+   :>jsonarr string uid: User id
+   
+   
+.. http:get:: /users
+
+   Return a list of users of the system
+   
+   :status 200: Ok
+      
+   :>jsonarr string ident: User id
+   :>jsonarr string name: Name
+   :>jsonarr string callsign: HAM radio callsign (can be null)
+   :>jsonarr Date lastused: Time when last logged in
+   :>jsonarr string group: Primary group (role)
+   :>jsonarr string altgroup: Secondary group (role)
+   :>jsonarr boolean sar: True if SAR user (derived from primary group)
+   :>jsonarr boolean admin: True if admin user
+   :>jsonarr boolean suspend: True if suspended
+   :>jsonarr string passwd: Always null
+   
+   
+.. http:post:: /users
+
+   Add a new user to the system
+   
+   :status 200: Ok
+   :status 400: Probable cause: User already exists
+      
+   :<jsonarr string ident: User id
+   :<jsonarr string name: Name
+   :<jsonarr string callsign: HAM radio callsign (can be null)
+   :<jsonarr Date lastused: Time when last logged in
+   :<jsonarr string group: Primary group (role)
+   :<jsonarr string altgroup: Secondary group (role)
+   :<jsonarr boolean sar: True if SAR user (derived from primary group)
+   :<jsonarr boolean admin: True if admin user
+   :<jsonarr boolean suspend: True if suspended
+   :<jsonarr string passwd: Password for login
+   
+
+   
+.. http:get:: /users/(userid)
+
+   Return info about a particular user
+
+   :parameter userid: Unique indentifier of user
+   :status 200: Ok
+   :status 404: Unknown user
+      
+   :>jsonarr string ident: User id
+   :>jsonarr string name: Name
+   :>jsonarr string callsign: HAM radio callsign (can be null)
+   :>jsonarr Date lastused: Time when last logged in
+   :>jsonarr string group: Primary group (role)
+   :>jsonarr string altgroup: Secondary group (role)
+   :>jsonarr boolean sar: True if SAR user (derived from primary group)
+   :>jsonarr boolean admin: True if admin user
+   :>jsonarr boolean suspend: True if suspended
+   :>jsonarr string passwd: Always null
+
+
+.. http:put:: /users/(userid)
+
+   Update a user
+    
+   :parameter userid: Unique indentifier of user
+      
+   :status 200: Ok
+   :status 404: Unknown user
+   :status 400: Cannot parse input
+   :status 404: Unknown group
+   :status 404: Unknown alt group
+        
+   :<jsonarr string ident: User id
+   :<jsonarr string name: Name
+   :<jsonarr string callsign: HAM radio callsign (can be null)
+   :<jsonarr Date lastused: Time when last logged in
+   :<jsonarr string group: Primary group (role)
+   :<jsonarr string altgroup: Secondary group (role)
+   :<jsonarr boolean sar: True if SAR user (derived from primary group)
+   :<jsonarr boolean admin: True if admin user
+   :<jsonarr boolean suspend: True if suspended
+   :<jsonarr string passwd: Password for login
+   
+   
+.. http:delete:: /users/(userid)
+
+   Remove a user
+    
+   :parameter userid: Unique indentifier of user
+   :status 200: Ok
+   
+   
+   
 Items (tracker objects)
 -----------------------
 Source: `ItemApi.java`
@@ -155,7 +401,7 @@ Source: `ItemApi.java`
    :>jsonarr string tag: Tag 
 
    
-.. http:get:: /item/(id)/tags
+.. http:post:: /item/(id)/tags
 
    Add tags to the item
    
@@ -169,7 +415,6 @@ Source: `ItemApi.java`
    
    
    
-   
 .. http:delete:: /item/(id)/tags/(tag)
    
    Remove a tag from the item
@@ -180,6 +425,54 @@ Source: `ItemApi.java`
    :status 200: Ok
    :status 404: Unknown tracker item
    :status 401: Unauthorized for access to item
+   
+   
+   
+.. http:get:: /items
+
+   Search items. Takes two query parameters: A search expression and a list of tags. The search return 
+   items where the search expression matches callsign, name or description and where tags matches. 
+   
+   :form src: Search expression for matching ident/callsign and comment
+   :form tags: Comma separated list of tags
+   
+   :status 200: Ok
+   :>jsonarr string ident: Ident or callsign for the item
+   :>jsonarr name: Name of the item
+   :>jsonarr alias: Alias of the item if set
+   :>jsonarr double pos[]: Position of item (lon, lat)
+   :>jsonarr Date updated: Time when item was last updated
+   :>jsonarr string descr: Description 
+   :>jsonarr int speed: Moving speed (km/h)
+   :>jsonarr int course: Moving course (degrees)
+   
+   
+.. http:get:: /item/(id)/alias
+
+   Returns alias (and alternative icon) set on the item
+   
+   :parameter id: Identifier of tracker item (callsign)
+   :status 200: Ok
+   :status 404: Unknown tracker item
+   :status 401: Unauthorized for access to item  
+         
+   :>json string alias: Alias (null if not set) 
+   :>json string icon: Alternative icon (null if not set) 
+   
+   
+.. http:put:: /item/(id)/alias
+
+   Set alias (and alternative icon) on the item
+   
+   :parameter id: Identifier of tracker item (callsign)
+   :status 200: Ok
+   :status 404: Unknown tracker item
+   :status 401: Unauthorized for access to item  
+   :status 401: Alias can only be set by owner
+   :status 400: Cannot parse input
+         
+   :<json string alias: Alias (null if not set) 
+   :<json string icon: Alternative icon (null if not set) 
    
    
    
