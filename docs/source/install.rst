@@ -34,7 +34,7 @@ The program will be installed and started automatically. To check that it works,
 
    tail -f /var/log/polaric/aprsd.log
 
-If things are ok, you will see new APRS messages arrive. Type q to quit.
+If things are ok, you will see new APRS messages arrive. Type CTRL-C to quit.
 
 You should now configure the server with your callsign and you should also review other configuration parameters like the aprs-is server, passcode, etc.. There is a web-interface for basic configuration. By default, it runs on port 8081. Start your web-browser and type in the url: 
 
