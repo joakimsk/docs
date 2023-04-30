@@ -23,7 +23,15 @@ Aprsd is primarily an *APRS client* (and even an APRS igate if configured to do 
 Interoperability
 ----------------
 
-tbd
+Polaric Server is a client/server application that supports interoperability in several ways. Interoperability refers to the ability of different systems, applications, or components to exchange information and work together effectively. In the context of a client/server application like this, interoperability can be achieved through:
+
+* Standardized Protocols: The client and server communicate using standardized protocols, such as HTTP or WebSocket, which allow systems developed by different vendors or using different technologies to interact seamlessly.
+
+* Data Formats: The application uses common data formats, like JSON for exchanging information. These formats can be easily parsed and processed by various systems, regardless of the programming language or platform used.
+
+* Application Programming Interfaces (APIs): The server component exposes well-defined APIs that can be consumed by different clients. APIs provide a consistent and standardized way for applications to communicate and share data, facilitating interoperability.
+    
+This means that alternative clients to the system is possible (and encouraged). The system can utilize open GIS data from various source through open rotocols like WMS or WFS. Different instances of the backend-server can exchange and synchronize information and other applications can communicate with the aprsd backend server in order to share information. 
 
 
 Supported geographical objects
