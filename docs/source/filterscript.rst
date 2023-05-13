@@ -122,7 +122,7 @@ We may also include the rules from other profiles. An include clause can appear 
 
  PROFILE <ident> {
      [ EXPORT '"'<description>'"' => PUBLIC | '{' <group-list> '}' ; ]
-     [  <predicate> => <action>; | INCLUDE <profile-name>; ] *
+     [  <predicate> => <action>; | INCLUDE <profile-name>; | INCLUDE TAGS '{' tag-list> '}' ;  ] *
  }
 
 A export clause declares that the profile should be visible in the menu of filters shown on clients. ``PUBLIC`` means that the profile is visible for all, alertnatively we may specify a list of groups that have access to the profile. We may also use the keyword ``NOLOGIN`` as a special group, i.e. those who are not logged in to the system.
