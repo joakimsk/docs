@@ -56,10 +56,12 @@ Simple predicates can be combined into complex expressions using ``AND``, ``OR``
     <predicate> ::= <predicate> AND <predicate>
                 |  <predicate> OR <predicate>
                 |  NOT <predicate>
+                |  TRAFFIC <predicate>
                 |  '(' <predicate> ')'
               
 Logical operators can be written in lowercase as well as uppercase letters as well as with symbols '|' or '&'. 
                 
+Using the keyword ``TRAFFIC`` before a predicate means that the predicate applies to the digipeater or igate that the node sends traffic to.                
 
 Actions
 -------
