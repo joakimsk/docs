@@ -324,10 +324,12 @@ Source: HistApi.java
 .. [1] Format for time is "yyyy-MM-dd/HH:mm"     
      
      
-Object API
-----------
+Json Object API
+---------------
 
 Source: RestApi.java
+
+The server does not interpret the content of raw objects (coded in JSON). Clients may use this API to store different thing. Tags can be used to give info what the objects contain. 
 
 +----------------------------+-------+-+------------------------------------------------------+
 |`/objects/{tag}`            | GET   |L| Get a list of objects for the logged in user         |
