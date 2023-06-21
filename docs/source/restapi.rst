@@ -570,7 +570,7 @@ Source: `AprsObjectApi.java`
    Returns a list of active APRS objects owned by this server. 
    
    :status 200: Ok
-   :>jsonarr string ident: Identifier (callsign) of APRS object
+   :>jsonarr string ident: Identifier (callsign) of APRS objects
    
 
 .. http:post:: /aprs/objects
@@ -582,12 +582,12 @@ Source: `AprsObjectApi.java`
    :status 400: Invalid object. Couldn't post
    :status 500: Couldn't post object
    
-   :<jsonarr string ident: Identifier (callsign) of APRS object
-   :<jsonarr double[] pos: Position of APRS object (longitude, latitude)
-   :<jsonarr char sym: Symbol 
-   :<jsonarr char symtab: Symbol table 
-   :<jsonarr string comment: Comment text
-   :<jsonarr boolean perm: True if permanent;
+   :<json string ident: Identifier (callsign) of APRS object
+   :<json double[] pos: Position of APRS object (longitude, latitude)
+   :<json char sym: Symbol 
+   :<json char symtab: Symbol table 
+   :<json string comment: Comment text
+   :<json boolean perm: True if permanent;
    
 
 
@@ -598,10 +598,10 @@ Source: `AprsObjectApi.java`
    :status 200: Ok
    :status 400: Object not found 
       
-   :<jsonarr double[] pos: Position of APRS object (longitude, latitude)
-   :<jsonarr char sym: Symbol 
-   :<jsonarr char symtab: Symbol table 
-   :<jsonarr string comment: Comment text
+   :<json double[] pos: Position of APRS object (longitude, latitude)
+   :<json char sym: Symbol 
+   :<json char symtab: Symbol table 
+   :<json string comment: Comment text
    
    
 .. http:delete:: /aprs/objects/(id)
