@@ -7,7 +7,7 @@ Clients (users) with web-browsers, can log in to the server using the username a
 Log in
 ------
 
-The user can log in by pointing the broser to 'formLogin' with the page origin as a query parameter. If the origin was http://mypage.org the link for logout is like this::
+The user can log in by pointing the browser to 'formLogin' with the page origin as a query parameter. If the origin was http://mypage.org the link for logout is like this::
     
     http://localhost:8081/formLogin?origin=<http://mypage.org
 
