@@ -40,8 +40,8 @@ HTTP Requests
 
 A request carrying a REST API call should have two headers: 
 
-Arctic-Nonce: A number used only once. Servers receiving this check if it is heard before and dismiss the call if it is. This is a effectibe protection against replay-attacks.
+**Arctic-Nonce:** A number used only once. Servers receiving this can check if it is heard before and dismiss the request if it is. This is a effective protection against replay-attacks.
 
-Arctic-Hmac: The SHA-256-HMAC checksum computed from a secret key and a combination of the nonce and the message-content. For POST and PUT requests this is the request body. For GET and DELETE requests it is empty. The Hmac code is encoded with Base-64 and truncated. We use the 44 first characters. When a Hmac is received the server-side also computes a Hmac the same way and compares. If it is the same result, it means that the request is authenticated. 
+**Arctic-Hmac:** The SHA-256-HMAC checksum computed from a secret key and a combination of the nonce and the message-content. For POST and PUT requests this is the request body. For GET and DELETE requests it is empty. The Hmac code is encoded with Base-64 and truncated. We use the 44 first characters. When a Hmac is received the server-side also computes a Hmac the same way and compares. If it is the same result, it means that the request is authenticated. 
 
 
