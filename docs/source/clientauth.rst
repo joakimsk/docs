@@ -28,9 +28,9 @@ The user can logout by pointing the browser to 'logout' with the page origin as 
 Server-Server authentication
 ============================
 
-Another authentication scheme is made for other servers needing to access REST APIs or Websocket interfaces. In this case we do not have users in the same sense. This authentication scheme can also be used for IoT devices. In the current version, there is just one level of authorisation. 
+Another authentication scheme is made for other servers needing to access REST APIs or Websocket interfaces. It is also used for access from IoT devices. This authentication scheme don't currently identify users (persons). In the current version, there is just one level of authorisation. 
 
-For each REST call (or Websocket message) we attach a SHA-256-HMAC (message authentication code). Computed from the message content, a nonce (number that changes for each call) and a secret shared key. 
+For each REST call (or Websocket message) we attach a SHA-256-HMAC (message authentication code). Computed from the message content, a nonce (number that is different for each call) and a secret shared key. 
 
 This authentication-scheme is currently experimental and may change. 
 
@@ -38,9 +38,9 @@ This authentication-scheme is currently experimental and may change.
 HTTP Requests
 -------------
 
-A request carrying a REST API call should have two headers: 
+A request carrying a REST API call can have two headers specific for this authentication mechamism: 
 
-**Arctic-Nonce:** A number used only once. Servers receiving this can check if it is heard before and dismiss the request if it is. This is a effective protection against replay-attacks.
+**Arctic-Nonce:** A number used once. 8 byte random number, encoded with Base64. Servers receiving this can check if it is heard before and dismiss the request if it is. This is a effective protection against replay-attacks and ensures that each HMAC is based on a unique message. 
 
 **Arctic-Hmac:** The SHA-256-HMAC checksum computed from a secret key and a combination of the nonce and the message-content. For POST and PUT requests this is the request body. For GET and DELETE requests it is empty. The Hmac code is encoded with Base-64 and truncated. We use the 44 first characters. When a Hmac is received the server-side also computes a Hmac the same way and compares. If it is the same result, it means that the request is authenticated. 
 
