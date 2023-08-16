@@ -47,5 +47,5 @@ A request carrying a REST API call can have two headers specific for this authen
 Secret Key
 ----------
 
-In the current version the secret key is stored on each server participating: In ``/etc/polaric/aprsd/server.ini``. ``system.auth.key`` setting. It is recommended to use a secure random function to generate this. 32 or 64 bytes is the recommended length of the key. Base64 encoded keys are ok. 64 bytes corresponds to 27 bytes (216 bits) raw binary
+In the current version the secret key is stored on each server participating: In ``/etc/polaric/aprsd/server.ini``. ``system.auth.key`` setting. It is recommended to use a secure random function to generate this. 32 or 64 bytes is the recommended length of the key. Base64 encoded keys are ok. 
 
