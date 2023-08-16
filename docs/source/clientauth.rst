@@ -32,7 +32,7 @@ Another authentication scheme is made for other servers needing to access REST A
 
 For each REST call (or Websocket message) we attach a SHA-256-HMAC (message authentication code). Computed from the message content, a nonce (number that changes for each call) and a secret shared key. 
 
-This authentication is currently experimental and may change. 
+This authentication-scheme is currently experimental and may change. 
 
 
 HTTP Requests
