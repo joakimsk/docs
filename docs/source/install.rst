@@ -6,7 +6,8 @@ This is a description how to install the *Polaric Server* software on a *Debian*
 
 The packages should work on Debian stable systems. From mid-june 2023 this will mean 'bookworm'. 'Bullseye' should still work (the next version of Polaric will require Java-17). It should probably also work on 'unstable' or 'testing' as well as recent Debian based distros like Ubuntu, Mint, Raspbian, Armbian, etc. Windows 10/11 with Linux subsystem (With Debian or Ubuntu) should probably work as well though I haven't tested much. 
 
-Note: If you install *polaric-database-plugin* on a 'bookworm', 'testing' or 'unstable' based system, there is an issue with the newest version of *libpostgis-java*. This can be solved by using version 2.4.0 (available in 'bullseye'). Polaric Server 3.0 will fix this. 
+.. note:: 
+ If you install *polaric-database-plugin* on a 'bookworm', 'testing' or 'unstable' based system, there may be an issue with the newest version of *libpostgis-java*. This can be solved by using version 2.4.0 (available in 'bullseye'). Polaric Server 3.0 will fix this. 
 
 .. note::
  It is important that the computer on which to install *Polaric Server* has a clock with correct time. It is recommended to install a *`ntp`* client ('`apt install ntp`'). *Polaric Server* can alternatively use a GPS to adjust the host computer's clock. 
