@@ -41,6 +41,3 @@ sphinx:
 # python:
 #    install:
 #    - requirements: docs/requirements.txt
-
-See also
-
