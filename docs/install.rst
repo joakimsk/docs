@@ -21,6 +21,7 @@ We offer DEB packages to help you install the software. To get started you first
     
 You will need to install my cryptographic public key (PGP) to verify the authenticity of repository and the packages. You may do the following. This means that you trust packages signed with my key::
 
+    apt-get install gnupg2 dirmngr
     apt-key del 89E7229CFFD59B2F
     gpg --keyserver keys.openpgp.org --recv-keys 89E7229CFFD59B2F
     gpg --export --armor 3E61003E24632585EB3DFE3D89E7229CFFD59B2F | tee /etc/apt/trusted.gpg.d/polaricserver.asc
