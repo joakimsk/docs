@@ -2,31 +2,28 @@
 Client authentication
 =====================
 
-Clients (users) with web-browsers, can log in to the server using the username and a password. 
+In version 3.0 the login scheme is replaced with a scheme more suited for REST API and mobile-apps. 
+Clients (users) with web-browsers or mobile-apps, can log in to the server using the username and a password. The client code will call a method POST to a url 'directLogin' with the form parameters: 'username' and 'password'. If login is successful, a session-key (base64 encoded, 64 characters long), will be returned that is used in authenticating subsequent requests to the server as well as the websocket connections. The key should be treated as a secret. It is not persistent, so when the server reboots users have to log-in again. 
 
-Log in
-------
+After as successful login the client can call the GET method on the url 'authStatus' which will return info on server capabilities and what authorizations the users have. If authentication fails it returns an error code (401 unauthorized). If authentication fails, a GET on an alternative authStatus2 can be used to get some information about the server-session anyway.  
 
-The user can log in by pointing the browser to 'formLogin' with the page origin as a query parameter. If the origin was http://mypage.org the link for logout is like this::
-    
-    http://localhost:8081/formLogin?origin=<http://mypage.org
 
-Where localhost:8081 can be replaced with whatever location and port your server runs with. The server will return a login form like this. 
+Login using polaric-webapp2 client
+----------------------------------
 
-.. image:: img/loginform.png
+In the webapp, login will look like this
 
-If login is successful, it will return (redirect) the user's browser to the origin page where the login was initiated from. A session will be created and last to the user logs out explicitly or the server is restarted. 
+.. image:: img/loginform3.png
 
-Log out
--------
+If login is successful (the getAuth method returns sucessfully, the widget will change and a logout button will be available. Here, logout will simply mean to remove the session key. 
 
-The user can logout by pointing the browser to 'logout' with the page origin as a query parameter. If the origin was http://mypage.org the link for logout is like this::
-
-    http://localhost:8081/logout?url=http://mypage.org
+.. image:: img/loginform3.png
 
 
 Server-Server authentication
 ============================
+
+(this will probably change in version 3.0)
 
 Another authentication scheme is made for other servers needing to access REST APIs or Websocket interfaces. It is also used for access from IoT devices. This authentication scheme don't currently identify users (persons). In the current version, there is just one level of authorisation. 
 
