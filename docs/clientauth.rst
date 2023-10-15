@@ -3,19 +3,19 @@ Client authentication
 =====================
 
 In version 3.0 the login scheme is replaced with a scheme more suited for REST API and mobile-apps. 
-Clients (users) with web-browsers or mobile-apps, can log in to the server using the username and a password. The client code will call a method POST to a url 'directLogin' with the form parameters: 'username' and 'password'. If login is successful, a session-key (base64 encoded, 64 characters long), will be returned that is used in authenticating subsequent requests to the server as well as the websocket connections. The key should be treated as a secret. It is not persistent, so when the server reboots users have to log-in again. 
+Clients (users) with web-browsers or mobile-apps, can log in to the server using the username and a password. The client code may call a method POST to a url 'directLogin' with the form parameters: 'username' and 'password'. If login is successful, a session-key (base64 encoded, 64 characters long), will be returned and can be used in authenticating subsequent requests to the server as well when establishing websocket connections. This key should be treated as a secret. It is not persistent, so when the server reboots users have to log-in again. 
 
-After as successful login the client can call the GET method on the url 'authStatus' which will return info on server capabilities and what authorizations the users have. If authentication fails it returns an error code (401 unauthorized). If authentication fails, a GET on an alternative authStatus2 can be used to get some information about the server-session anyway.  
+After a successful login the client can call the GET method on the url 'authStatus' which will return info on server capabilities and what authorizations the users have. If authentication fails, it returns an error code (401 unauthorized). If authentication fails, a GET on an alternative 'authStatus2' can be used to get some information about the server-session anyway.  
 
 
 Login using polaric-webapp2 client
 ----------------------------------
 
-In the webapp, login will look like this
+In the webapp, login can be done with a widget (popup) like this:
 
 .. image:: img/loginform2.png
 
-If login is successful (the getAuth method returns sucessfully, the widget will change and a logout button will be available. In addition it is possible to temporarily change the role (if user is authorized for that). Here, logout will simply mean to remove the session key so that the subsequent REST calls will not do proper authentication.
+If login is successful (the 'authStatus' method returns sucessfully, the widget will change and a logout button will be available. In addition it is possible to temporarily change the role (if user is authorized for that). Here, logout will simply mean to remove the session key so that the subsequent REST calls will not do proper authentication.
 
 .. image:: img/loggedin.png
 
