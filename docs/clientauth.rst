@@ -15,7 +15,7 @@ In the webapp, login will look like this
 
 .. image:: img/loginform2.png
 
-If login is successful (the getAuth method returns sucessfully, the widget will change and a logout button will be available. Here, logout will simply mean to remove the session key. 
+If login is successful (the getAuth method returns sucessfully, the widget will change and a logout button will be available. In addition it is possible to temporarily change the role (if user is authorized for that). Here, logout will simply mean to remove the session key so that the subsequent REST calls will not do proper authentication.
 
 .. image:: img/loggedin.png
 
