@@ -13,11 +13,11 @@ Login using polaric-webapp2 client
 
 In the webapp, login will look like this
 
-.. image:: img/loginform3.png
+.. image:: img/loginform2.png
 
 If login is successful (the getAuth method returns sucessfully, the widget will change and a logout button will be available. Here, logout will simply mean to remove the session key. 
 
-.. image:: img/loginform3.png
+.. image:: img/loggedin.png
 
 
 Server-Server authentication
