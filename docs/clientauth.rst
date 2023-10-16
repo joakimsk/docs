@@ -49,7 +49,7 @@ When opening a websocket connection we can authenticate by adding the string *us
 Server-Server authentication
 ============================
 
-(this is experimental and will probably change in version 3.0 - see also client authentication above)
+*(this is experimental and will probably change in version 3.0 - see also client authentication above)*
 
 Another authentication scheme is made for other servers needing to access REST APIs or Websocket interfaces. It is also used for access from IoT devices. This authentication scheme don't currently identify users (persons). In the current version, there is just one level of authorisation. 
 
