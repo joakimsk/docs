@@ -29,11 +29,21 @@ A request carrying a REST API can use the Authorization HTTP header the followin
 
 The data field consists of the following (separated by semicolon): 
 
-* The userid used in the login
-* The nonce is a number unique for each REST call. The webapp generates a 64 bit (8 bytes) random number. This is base64 encoded. 
-* A HMAC computed with the key returned by the directLogin call and a concatenation of the nonce and a SHA256 hash of the request  
-  body if it exists. The HMAC is base64 encoded.
-* We can add a temporary role-id (optional). 
+**userid**
+    The username used in the login
+**nonce** 
+    A number unique for each REST call. The webapp generates a 64 bit (8 bytes) random number. This is base64 encoded. 
+**hmac** 
+    A HMAC hash using the key returned by the ``directLogin`` call and a concatenation of the nonce and a 
+    SHA256 hash of the request body if it exists. The HMAC is base64 encoded.
+**role** (optional)
+    We can add a temporary role-id if user is authorized for more than one role. 
+
+Websocket creation
+------------------
+
+When opening a websocket connection we can authenticate by adding the string *userid;nonce;hmac;role* (where *;role* is optional) as described above as a request parameter to the wss URL. If authentication is successful the server will threat communication over the resulting websocket as authenticated and with the resulting authorizations. 
+
 
 
 Server-Server authentication
