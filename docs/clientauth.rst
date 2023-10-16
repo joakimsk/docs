@@ -20,6 +20,25 @@ If login is successful (the 'authStatus' method returns sucessfully, the widget 
 .. image:: img/loggedin.png
 
 
+HTTP requests
+-------------
+
+A request carrying a REST API can use the Authorization HTTP header the following way: 
+
+Authorization: Arctic-Hmac userid;nonce;hmac;role
+
+The data field consists of the following (separated by semicolon): 
+
+* The userid used in the login
+
+* The nonce is a number unique for each REST call. The webapp generates a 64 bit (8 bytes) random number. This is base64 encoded. 
+
+* A HMAC computed with the key returned by the directLogin call and a concatenation of the nonce and a SHA256 hash of the request  
+  body if it exists. The HMAC is base64 encoded.
+
+* Optionally we can add a temporary role-id (optionally). 
+
+
 Server-Server authentication
 ============================
 
