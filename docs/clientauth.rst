@@ -36,7 +36,7 @@ The data field consists of the following (separated by semicolon):
 * A HMAC computed with the key returned by the directLogin call and a concatenation of the nonce and a SHA256 hash of the request  
   body if it exists. The HMAC is base64 encoded.
 
-* Optionally we can add a temporary role-id (optionally). 
+* We can add a temporary role-id (optional). 
 
 
 Server-Server authentication
