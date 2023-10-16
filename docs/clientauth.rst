@@ -23,9 +23,9 @@ If login is successful (the 'authStatus' method returns sucessfully, the widget 
 HTTP requests
 -------------
 
-A request carrying a REST API can use the Authorization HTTP header the following way: 
+A request carrying a REST API can use the Authorization HTTP header the following way:: 
 
-Authorization: Arctic-Hmac userid;nonce;hmac;role
+ Authorization: Arctic-Hmac userid;nonce;hmac;role
 
 The data field consists of the following (separated by semicolon): 
 
