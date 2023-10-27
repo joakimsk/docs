@@ -7,6 +7,9 @@ Clients (users) with web-browsers or mobile-apps, can log in to the server using
 
 After a successful login the client can call the GET method on the url ``authStatus`` which will return info on server capabilities and what authorizations the users have. If authentication fails, it returns an error code (401 unauthorized). If authentication fails, a GET on an alternative ``authStatus2`` can be used to get some information about the server-session anyway.  
 
+.. note::
+    This is supported from aprsd version 3.0
+
 
 Login using polaric-webapp2 client
 ----------------------------------
@@ -50,6 +53,10 @@ Server-Server authentication
 ============================
 
 A similar authentication scheme is used for other server instances needing to access REST APIs or Websocket interfaces. It could also be used for access from IoT devices. This authentication scheme doesn't identify web-browser users (typically persons) but rather services. In the current version, there is just one level of authorisation. 
+
+.. note::
+    This is supported from aprsd version 3.0.
+
 
 HTTP requests and websockets
 ----------------------------
