@@ -49,14 +49,12 @@ When opening a websocket connection we can authenticate by adding the string *us
 Server-Server authentication
 ============================
 
-*(this is experimental)*
-
 A similar authentication scheme is used for other server instances needing to access REST APIs or Websocket interfaces. It could also be used for access from IoT devices. This authentication scheme doesn't identify web-browser users (typically persons) but rather services. In the current version, there is just one level of authorisation. 
 
 HTTP requests and websockets
 ----------------------------
 
-HTTP(S) requests are authenticated the same way as for personal logins, a Authorization header is used with the fields userid, nonce and hmac. The role field is not used and the userid identifies a service rather than a person. Websockets are also created like described above except that the optional ';role' is not used. 
+HTTP(S) requests are authenticated the same way as for browser logins; an Authorization header is used with *userid*, *nonce* and *hmac* fields. The *role* field is not used and the *userid* identifies a service rather than a person. Websockets are also created like described above except that the optional ';role' is not used. 
 
 
 Secret Key
