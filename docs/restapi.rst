@@ -328,15 +328,23 @@ Items (tracker objects)
 Source: `ItemApi.java`
 
 +------------------------+-------+-+------------------------------------------------------+
-|`/item/{id}/info`       | GET   |O| Get info about a tracker                             |
+|`/item/{id}/info`       | GET   |O| Get info about an item (open version)                |
 +------------------------+-------+-+------------------------------------------------------+
-|`/item/{id}/trail`      | GET   |O| Get trail of moving tracker. List of points.         |
+|`/item/{id}/xinfo`      | GET   |L| Get info about an item                               |
++------------------------+-------+-+------------------------------------------------------+
+|`/item/{id}/pos`        | GET   |O| Get position of an item (open version)               |
++------------------------+-------+-+------------------------------------------------------+
+|`/item/{id}/xpos`       | GET   |L| Get position of an item                              |
++------------------------+-------+-+------------------------------------------------------+
+|`/item/{id}/trail`      | GET   |O| Get trail of moving item. List of points (open)      |
++------------------------+-------+-+------------------------------------------------------+
+|`/item/{id}/xtrail`     | GET   |L| Get trail of moving item. List of points.            |
 +------------------------+-------+-+------------------------------------------------------+
 |`/item/{id}/reset`      | PUT   |S| Reset trail and other info about item                |
 +------------------------+-------+-+------------------------------------------------------+
 |`/item/{id}/chcolor`    | PUT   |S| Change color of trail.                               |
 +------------------------+-------+-+------------------------------------------------------+
-|`/item{id}/tags`        | GET   |O| Get list of tags set on an item                      |
+|`/item{id}/tags`        | GET   |L| Get list of tags set on an item                      |
 |                        +-------+-+------------------------------------------------------+
 |                        | POST  |S| Add a tag to an item                                 |
 +------------------------+-------+-+------------------------------------------------------+
@@ -349,14 +357,15 @@ Source: `ItemApi.java`
 |                        | PUT   |S| Set alias for tracker with id (callsign).            |
 +------------------------+-------+-+------------------------------------------------------+
 
-.. http:get:: /item/(id)/info
+.. http:get:: /item/(id)/xinfo
 
    Returns info about a item (tracker). The full set of returned attributes depend on the type of item. Here we show what all items will have. 
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
+   :status 401: Unauthorized
    :status 404: Unknown tracker item
-   :status 401: Unauthorized for access to item
+   :status 403: Not authorized for access to item
    :status 500: Error
       
    :>json string type: Type of item 
@@ -364,17 +373,33 @@ Source: `ItemApi.java`
    :>json descr: Description text 
    :>json string source: Name of source
    :>json double pos[]: Position of item (lon, lat)
+
+
+.. http:get:: /item/(id)/xpos
+
+   Returns position of an item (tracker).
    
-   
-   
-.. http:get:: /item/(id)/trail
+   :parameter id: Identifier of tracker item (callsign)
+   :status 200: Ok
+   :status 401: Unauthorized
+   :status 404: Unknown tracker item
+   :status 403: Not aauthorized for access to item
+   :status 500: Error
+
+   :>json double pos[]: Position of item (lon, lat)   
+
+
+.. http:get:: /item/(id)/xtrail
 
    Returns a trail of moving tracker. List of points. 
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
+   :status 401: Unauthorized
    :status 404: Unknown tracker item
-   
+   :status 403: Not aauthorized for access to item
+   :status 500: Error
+
    :>jsonarr Date time: Time of point 
    :>jsonarr int speed: Speed of tracker at point (km/h)
    :>jsonarr int course: Course of tracker at point (0-360 degrees)
@@ -386,16 +411,18 @@ Source: `ItemApi.java`
 .. http:put:: /item/(id)/reset
 
    Reset trail and other info about item
-   
+  
+   :status 401: Unauthorized
    :status 404: Unknown tracker item
-   :status 401: Unauthorized for access to item
+   :status 403: Not authorized for access to item
 
    
    
 .. http:put:: /item/(id)/chcolor
 
    Change colour of trail
-   
+     
+   :status 401: Unauthorized
    :status 404: Unknown tracker item
    :status 401: Unauthorized for access to item
    
@@ -407,8 +434,10 @@ Source: `ItemApi.java`
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
+   :status 401: Unauthorized
    :status 404: Unknown tracker item
-      
+   :status 403: Not authorized for access to item   
+  
    :>jsonarr string tag: Tag 
 
    
@@ -419,9 +448,10 @@ Source: `ItemApi.java`
    :parameter id: Identifier of tracker item (callsign)
    :parameter tag: The tag to be added
       
-   :status 200: Ok
+   :status 200: Ok   
+   :status 401: Unauthorized
    :status 404: Unknown tracker item
-   :status 401: Unauthorized for access to item
+   :status 403: Not authorized for access to item
    :<jsonarr string tag: Tag to be added 
    
    
@@ -433,9 +463,10 @@ Source: `ItemApi.java`
    :parameter id: Identifier of tracker item (callsign)
    :parameter tag: The tag to be removed
    
-   :status 200: Ok
+   :status 200: Ok   
+   :status 401: Unauthorized
    :status 404: Unknown tracker item
-   :status 401: Unauthorized for access to item
+   :status 403: Forbidden (or not authorized for access to item)
    
    
    
