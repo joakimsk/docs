@@ -67,7 +67,7 @@ HTTP(S) requests are authenticated the same way as for browser logins; an Author
 Secret Key
 ----------
 
-The secret key is manually installed on each server participating, in the file``/etc/polaric-aprsd/keys/peers``. Entries in this file are in the following format:: 
+The secret key is manually installed on each server participating, in the file ``/etc/polaric-aprsd/keys/peers``. Entries in this file are in the following format:: 
 
  service-name : key
 
