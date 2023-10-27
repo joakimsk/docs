@@ -6,7 +6,9 @@ This document summarises the RESTful API to the Polaric-aprsd backend server. Th
 
 The URL identifies the resource (or service) to be invoked. For REST APIs, the URL identifies the resource and the operation to be performed on it is determined by the HTTP method: GET (read object), PUT (update), POST (add, post), DELETE (remove it). Where a representation of the state is required or returned, the JSON format is used. Some operations that perform search expect query parameters.
 
-Most services will require authorization: O=open, L=login, S=SAR, A=admin.
+Most services will require authorization: O=open, L=login, S=SAR, A=admin. 
+
+See more info on `Client Authentication <https://polaricserver.readthedocs.io/en/latest/clientauth.html#client-authentication>`_ To access 'L', 'S' or 'A' services, requests must be authenticated. To access 'O' services, we do not use authentication. 
 
 
 
