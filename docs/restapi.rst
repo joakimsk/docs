@@ -17,7 +17,9 @@ System services
 Source: `AdminApi.java` and `ShellScriptApi.java`
 
 +------------------------+-------+-+------------------------------------------------------+
-|`/authStatus`           | GET   |O| Get authorization info. Returns AuthInfo object      |
+|`/authStatus`           | GET   |L| Get authorization info. Returns AuthInfo object      |
++------------------------+-------+-+------------------------------------------------------+
+|`/authStatus2`          | GET   |O| Open version of authStatus. Returns AuthInfo object  |
 +------------------------+-------+-+------------------------------------------------------+
 |`/system/tags`          | GET   |O| Get tags used                                        |
 +------------------------+-------+-+------------------------------------------------------+
@@ -56,6 +58,7 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
    Get list of all tags used on the system
     
    :status 200: Ok
+   :status 401: Unauthorized
    :>jsonarr string tag: Tag used
    
    
@@ -64,6 +67,8 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
    Get position of this server (symbol, latlong pos) 
     
    :status 200: Ok
+   :status 401: Unauthorized
+   :status 403: Forbidden 
    :>json string sym: Symbol
    :>json string symtab: Symbol table
    :>json double[] pos: Position (longitude, latitude);
@@ -75,6 +80,8 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
     
    :status 200: Ok
    :status 400: Couldn't parse input
+   :status 401: Unauthorized
+   :status 403: Forbidden 
    :>json string sym: Symbol
    :>json string symtab: Symbol table
    :>json double[] pos: Position (longitude, latitude);
@@ -106,6 +113,8 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
    Get list of available commands/scripts    
     
    :status 200: Ok
+   :status 401: Unauthorized
+   :status 403: Forbidden 
    :>jsonarr string name: Name (id) of script/command
    :>jsonarr string descr: Description
    
@@ -117,6 +126,8 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
 
    :parameter script-id: Script identifier (name)
    :status 200: Ok 
+   :status 401: Unauthorized
+   :status 403: Forbidden 
    :status 400: Couldn't parse input
    :status 404: Script xxx not found
    :status 400: Script xxx: Missing arguments
@@ -135,7 +146,9 @@ Users and clients
 Source: `UserApi.java`
 
 +------------------------+-------+-+------------------------------------------------------+
-|`/filters`              | GET   |L| Get filters available for you                        |
+|`/filters`              | GET   |O| Get filters available for you (open version)         |
++------------------------+-------+-+------------------------------------------------------+
+|`/myfilters`            | GET   |L| Get filters available for you (login version)        |
 +------------------------+-------+-+------------------------------------------------------+
 |`/mypasswd`             | PUT   |L| Change your own password                             |
 +------------------------+-------+-+------------------------------------------------------+
@@ -143,7 +156,7 @@ Source: `UserApi.java`
 +------------------------+-------+-+------------------------------------------------------+
 |`/loginusers`           | GET   |A| Get logged in users (list of userids)                |
 +------------------------+-------+-+------------------------------------------------------+
-|`/groups`               | GET   |A| Get available groups (roles)                         |
+|`/groups`               | GET   |L| Get available groups (roles)                         |
 +------------------------+-------+-+------------------------------------------------------+
 |`/mygroup`              | PUT   |L| Change your own group/role                           |
 +------------------------+-------+-+------------------------------------------------------+
@@ -160,19 +173,21 @@ Source: `UserApi.java`
 |                        | DELETE|A| Remove a user                                        |
 +------------------------+-------+-+------------------------------------------------------+
 
-.. http:get:: /filters
+.. http:get:: /myfilters
 
    Returns a list of filters available for you as a logged in user. 
    
    :status 200: Ok
+   :status 401: Unauthorized
    :>jsonarr string[] filter: Pair - filter name, description
 
 
 .. http:get:: /mypasswd
 
-   Change your own password
+   Change your own password. If you are Admin, you can change other's passwords as well.
    
    :status 200: Ok
+   :status 401: Unauthorized
    :status 404: Unknown user
    :<json string passwd: New password
    
@@ -182,37 +197,21 @@ Source: `UserApi.java`
    Get currently active clients to (the websocket interface)
    
    :status 200: Ok
+   :status 401: Unauthorized
+   :status 403: Forbidden
    :>jsonarr string uid: User id (IP-address:port)
    :>jsonarr string username: Login name (if logged in)
    :>jsonarr Date created: Time when client connection was created
 
-
-.. http:get:: /wsclients
-
-   Get currently logged in users
-   
-   :status 200: Ok
-   :>jsonarr string uid: Userid (login name)
-   
    
 .. http:get:: /groups
 
    Get groups (roles) available for logged in user
    
-   :status 200: Ok
+   :status 200: Ok 
+   :status 401: Unauthorized
    :>jsonarr string gid: Group id
    
-
-.. http:get:: /mygroup
-
-   Change your own group/role (for the session)
-   
-   :status 200: Ok
-   :status 404: Unknown user
-   :status 404: Unknown group
-   :status 403: Group is not allowed
-   
-   :>jsonarr string group: Group id
    
 
 .. http:get:: /usernames
@@ -220,6 +219,7 @@ Source: `UserApi.java`
    Return a list of usernames (userids only)
    
    :status 200: Ok
+   :status 401: Unauthorized
    :>jsonarr string uid: User id
    
    
@@ -228,7 +228,9 @@ Source: `UserApi.java`
    Return a list of users of the system
    
    :status 200: Ok
-      
+   :status 401: Unauthorized 
+   :status 403: Forbidden
+
    :>jsonarr string ident: User id
    :>jsonarr string name: Name
    :>jsonarr string callsign: HAM radio callsign (can be null)
@@ -246,6 +248,8 @@ Source: `UserApi.java`
    Add a new user to the system
    
    :status 200: Ok
+   :status 401: Unauthorized 
+   :status 403: Forbidden
    :status 400: Probable cause: User already exists
       
    :<jsonarr string ident: User id
@@ -267,6 +271,8 @@ Source: `UserApi.java`
 
    :parameter userid: Unique indentifier of user
    :status 200: Ok
+   :status 401: Unauthorized 
+   :status 403: Forbidden
    :status 404: Unknown user
       
    :>jsonarr string ident: User id
@@ -288,6 +294,8 @@ Source: `UserApi.java`
    :parameter userid: Unique indentifier of user
       
    :status 200: Ok
+   :status 401: Unauthorized 
+   :status 403: Forbidden
    :status 404: Unknown user
    :status 400: Cannot parse input
    :status 404: Unknown group
@@ -311,7 +319,8 @@ Source: `UserApi.java`
     
    :parameter userid: Unique indentifier of user
    :status 200: Ok
-   
+   :status 401: Unauthorized 
+   :status 403: Forbidden
    
    
 Items (tracker objects)
