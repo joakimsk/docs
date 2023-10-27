@@ -23,7 +23,7 @@ If login is successful (the ``authStatus`` method returns sucessfully, the widge
 HTTP requests
 -------------
 
-A request carrying a REST API can use the Authorization HTTP header the following way:: 
+A request to a REST API can use the Authorization HTTP header the following way:: 
 
  Authorization: Arctic-Hmac userid;nonce;hmac;role
 
@@ -49,12 +49,23 @@ When opening a websocket connection we can authenticate by adding the string *us
 Server-Server authentication
 ============================
 
-*(this is experimental and will probably change in version 3.0 - see also client authentication above)*
+*(this is experimental)*
 
-A similar authentication scheme is made for other servers needing to access REST APIs or Websocket interfaces. It is also used for access from IoT devices. This authentication scheme don't currently identify users (persons). In the current version, there is just one level of authorisation. 
+A similar authentication scheme is used for other server instances needing to access REST APIs or Websocket interfaces. It could also be used for access from IoT devices. This authentication scheme doesn't identify web-browser users (typically persons) but rather services. In the current version, there is just one level of authorisation. 
+
+HTTP requests and websockets
+----------------------------
+
+HTTP(S) requests are authenticated the same way as for personal logins, a Authorization header is used with the fields userid, nonce and hmac. The role field is not used and the userid identifies a service rather than a person. Websockets are also created like described above except that the optional ';role' is not used. 
+
 
 Secret Key
 ----------
 
-In the current version the secret key is stored on each server participating: In ``/etc/polaric/aprsd/server.ini``. ``system.auth.key`` setting. It is recommended to use a secure random function to generate this. 32 or 64 bytes is the recommended length of the key. Base64 encoded keys are ok. 
+The secret key is manually installed on each server participating, in the file``/etc/polaric-aprsd/keys/peers``. Entries in this file are in the following format:: 
 
+ service-name : key
+
+Where the service-name can be used to identify a particular REST API and/or websocket service. The key is a random sequence of characters. It is recommended to use a secure random function to generate this and that they are Base64 encoded. 64 bytes is the recommended length of the key.
+
+Currently there is one service using this sheme: The ``dbsync`` of the Database plugin. 
