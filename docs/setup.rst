@@ -41,7 +41,7 @@ The radio channel is not activated by default. If you need to use a TNC or a rad
 
 * **Baud-rate** for serial port.
 
-If type is ´´TCPKISS´´, you fill in the IP-address (or server domain name) and a port number. ``TCPKISS`` is usefull e.g. if using *Polaric-aprsd* along with *Direwolf*. Actually, it may be used to access a TNC over a serial device, using a serial to network proxy like *ser2net* or *tcptty*. This can be more flexible and reliable than using the serial port directly from Polaric aprsd and is therefore recommended.    
+If type is ``TCPKISS``, you fill in the IP-address (or server domain name) and a port number. ``TCPKISS`` is usefull e.g. if using *Polaric-aprsd* along with programs like *Direwolf*. Actually, it may be used to access any TNC over a serial device, using a serial to network proxy like *ser2net* or *tcptty*. This can be more flexible and reliable than using the serial port directly from Polaric aprsd and is therefore recommended.    
 
 .. image:: img/sc2.png
 
