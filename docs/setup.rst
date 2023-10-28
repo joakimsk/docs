@@ -35,13 +35,13 @@ The APRS-IS channel is already set up and activated. The figure shows how it loo
 
 The radio channel is not activated by default. If you need to use a TNC or a radio with builtin APRS, you can configure and activate this channel. Here are the settings:
 
-* **Type**: *'TNC2'* for TNC2 compatible TNC. Use this for Kenwood radios with builtin APRS. Use 'KISS' for TNCs in KISS mode. It is also possible to use 'TCPKISS' (KISS over internet). A channel need to be deactivated before changing the type. After changing type, click 'Update' to get the right fields to fill in (you may also need to reload the page).
+* **Type**: *'TNC2'* for TNC2 compatible TNC. Use this for Kenwood radios with builtin APRS. Use ´KISS´ for TNCs in KISS mode. It is also possible to use ´TCPKISS´ (KISS over internet). A channel need to be deactivated before changing the type. After changing type, click 'Update' to get the right fields to fill in (you may also need to reload the page).
     
 * **Port**: Serial port or USB-serial port, as they are named in Linux. For instance, *`/dev/ttyS0`* would correspond to the COM1 serial port. If you plug in a USB serial converter or a radio with a USB plug, the port name will typically *`/dev/ttyUSB0`* or *`/dev/ttyACM0`* depending on what hardware is used. One way to find out what port-name is assigned to a USB device is to type *'dmesg'* in the command shell after the device is plugged in to look at the system log.
 
 * **Baud-rate** for serial port.
 
-If type is 'TCPKISS', you fill in the IP-address (or server domain name) and a port number. 'TCPKISS' is usefull e.g. if using *Polaric-aprsd* along with *Direwolf*. 
+If type is ´´TCPKISS´´, you fill in the IP-address (or server domain name) and a port number. ´´TCPKISS´´ is usefull e.g. if using *Polaric-aprsd* along with *Direwolf*. Actually, it may be ussed to access a TNC over a serial device, using a serial to network proxy like ser2net or tcptty. This can be more flexible and reliable than using the serial port directly from Polaric aprsd.    
 
 .. image:: img/sc2.png
 
