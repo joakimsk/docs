@@ -625,6 +625,7 @@ Source: `AprsObjectApi.java`
    Add an APRS object to this server 
    
    :status 200: Ok
+   :status 401: Unauthorized
    :status 400: Object already exists
    :status 400: Invalid object. Couldn't post
    :status 500: Couldn't post object
@@ -643,6 +644,7 @@ Source: `AprsObjectApi.java`
     Update an APRS object on this server 
    
    :status 200: Ok
+   :status 401: Unauthorized
    :status 400: Object not found 
       
    :<json double[] pos: Position of APRS object (longitude, latitude)
@@ -657,6 +659,7 @@ Source: `AprsObjectApi.java`
     
    :parameter id: Identifier of item (callsign)
    :status 200: Ok   
+   :status 401: Unauthorized
    :status 400: Object not found 
    :status 500: Couldn't delete object
    
@@ -679,6 +682,7 @@ Source: `MailBoxApi.java`
    Returns the content of the user's mailbox (list of messsages)
    
    :status 200: Ok
+   :status 401: Unauthorized
    :status 401: No mailbox available
    
    :>jsonarr long msgId: Unique identifier of message;
@@ -696,6 +700,7 @@ Source: `MailBoxApi.java`
    Post a message to another user (or to APRS)
    
    :status 200: Ok
+   :status 401: Unauthorized
    :status 400: Cannot parse input
    :status 404: Unknown from-address
    :status 404: Callsign is needed for raw APRS messages
@@ -719,6 +724,7 @@ Source: `MailBoxApi.java`
    :parameter msgid: Unique indentifier of message
 
    :status 200: Ok
+   :status 401: Unauthorized
    :status 400: Message id must be a number
    
    
@@ -729,21 +735,22 @@ APRS Bulletins
 Source: `BullBoardApi.java`
 
 +-----------------------------------------+-----+-+-------------------------------------------------+
-|`/bullboard/groups`                      | GET |O| List of active bulletin groups                  |
+|`/bullboard/groups`                      | GET |L| List of active bulletin groups                  |
 +-----------------------------------------+-----+-+-------------------------------------------------+
-|`/bullboard/{groupid}/senders`           | GET |O| List of callsigns of senders to a given group   |
+|`/bullboard/{groupid}/senders`           | GET |L| List of callsigns of senders to a given group   |
 +-----------------------------------------+-----+-+-------------------------------------------------+
-|`/bullboard/{groupid}/messages`          | GET |O| Get all messages in a group                     |
+|`/bullboard/{groupid}/messages`          | GET |L| Get all messages in a group                     |
 |                                         +-----+-+-------------------------------------------------+
 |                                         | POST|L| Submit a bulletin                               |
 +-----------------------------------------+-----+-+-------------------------------------------------+
-|`/bullboard/{groupid}/messages/{sender}` | GET |O| Bulletins from a given sender in a group        |
+|`/bullboard/{groupid}/messages/{sender}` | GET |L| Bulletins from a given sender in a group        |
 +-----------------------------------------+-----+-+-------------------------------------------------+
 
 .. http:get:: /bullboard/groups
 
    Returns a list of active bulleti groups
-   
+
+   :status 401: Unauthorized
    :status 200: Ok
    :>jsonarr string id: Group id 
 
@@ -754,6 +761,7 @@ Source: `BullBoardApi.java`
    
    :parameter groupid: Unique indentifier of group
    :status 200: Ok
+   :status 401: Unauthorized
    :status 404: Group not found.
    
    :>jsonarr string id: Callsign of sender 
@@ -765,6 +773,7 @@ Source: `BullBoardApi.java`
     
    :parameter groupid: Unique indentifier of group
    :status 200: Ok
+   :status 401: Unauthorized
    :status 404: Group not found.
    
    :>jsonarr string id: Callsign of sender 
@@ -777,7 +786,8 @@ Source: `BullBoardApi.java`
    
    :parameter groupid: Unique indentifier of group
    :status 200: Ok  
-   :status 401: No callsign registered for user.
+   :status 401: Unauthorized
+   :status 403: No callsign registered for user.
    :status 400: Cannot parse input
    
    :<json string bullid: Index for bulletin
@@ -793,6 +803,7 @@ Source: `BullBoardApi.java`
    :parameter sender: Callsign of sender
    
    :status 200: Ok
+   :status 401: Unauthorized
    :status 404: Group not found.
    
    :>jsonarr string id: Callsign of sender 
@@ -821,6 +832,7 @@ Source: `SarApi.java`
    Returns a list of IPPs for the given user.
    
    :status 200: Ok
+   :status 401: Unauthorized
    :status 500: No authorization info found.
    
    :>jsonarr string id: Unique identifier 
@@ -837,6 +849,7 @@ Source: `SarApi.java`
    Add a IPP
 
    :status 200: Ok  
+   :status 401: Unauthorized
    :status 500: No authorization info found.
    :status 400: Cannot parse input
    
@@ -856,6 +869,7 @@ Source: `SarApi.java`
    :parameter id: Unique indentifier of IPP
    
    :status 200: Ok
+   :status 401: Unauthorized
    :status 500: No authorization info found.
    :status 404: Not found.
    
@@ -876,6 +890,7 @@ Source: `SarApi.java`
    :parameter id: Unique indentifier of IPP
    
    :status 200: Ok
+   :status 401: Unauthorized
    :status 500: No authorization info found. 
    :status 400: Cannot parse input
    :status 404: Not found.
@@ -897,5 +912,6 @@ Source: `SarApi.java`
    :parameter id: Unique indentifier of IPP
 
    :status 200: Ok
+   :status 401: Unauthorized
    :status 500: No authorization info found.
 
