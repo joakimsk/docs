@@ -350,7 +350,9 @@ Source: `ItemApi.java`
 +------------------------+-------+-+------------------------------------------------------+
 |`/item/{id}/tags/{tag}` | DELETE|S| Remove a tag from an item                            |
 +------------------------+-------+-+------------------------------------------------------+
-|`/items`                | GET   |O| Search items (query parameters)                      |
+|`/items`                | GET   |O| Search items (query parameters, open version)        |
++------------------------+-------+-+------------------------------------------------------+
+|`/xitems`               | GET   |L| Search items (query parameters)                      |
 +------------------------+-------+-+------------------------------------------------------+
 |`/item/{id}/alias`      | GET   |S| Alias for tracker with id (callsign).                |
 |                        +-------+-+------------------------------------------------------+
@@ -479,6 +481,7 @@ Source: `ItemApi.java`
    :form tags: Comma separated list of tags
    
    :status 200: Ok
+   :status 401: Unauthorized
    :>jsonarr string ident: Ident or callsign for the item
    :>jsonarr name: Name of the item
    :>jsonarr alias: Alias of the item if set
@@ -495,8 +498,9 @@ Source: `ItemApi.java`
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
+   :status 401: Unauthorized
    :status 404: Unknown tracker item
-   :status 401: Unauthorized for access to item  
+   :status 403: Not authorized for access to item  
          
    :>json string alias: Alias (null if not set) 
    :>json string icon: Alternative icon (null if not set) 
@@ -508,8 +512,9 @@ Source: `ItemApi.java`
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
+   :status 401: Unauthorized
    :status 404: Unknown tracker item
-   :status 401: Unauthorized for access to item  
+   :status 401: Not authorized for access to item  
    :status 401: Alias can only be set by owner
    :status 400: Cannot parse input
          
