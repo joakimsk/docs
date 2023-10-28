@@ -58,7 +58,7 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
    Get list of all tags used on the system
     
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :>jsonarr string tag: Tag used
    
    
@@ -67,7 +67,7 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
    Get position of this server (symbol, latlong pos) 
     
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 403: Forbidden 
    :>json string sym: Symbol
    :>json string symtab: Symbol table
@@ -80,7 +80,7 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
     
    :status 200: Ok
    :status 400: Couldn't parse input
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 403: Forbidden 
    :>json string sym: Symbol
    :>json string symtab: Symbol table
@@ -113,7 +113,7 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
    Get list of available commands/scripts    
     
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 403: Forbidden 
    :>jsonarr string name: Name (id) of script/command
    :>jsonarr string descr: Description
@@ -126,7 +126,7 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
 
    :parameter script-id: Script identifier (name)
    :status 200: Ok 
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 403: Forbidden 
    :status 400: Couldn't parse input
    :status 404: Script xxx not found
@@ -178,7 +178,7 @@ Source: `UserApi.java`
    Returns a list of filters available for you as a logged in user. 
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :>jsonarr string[] filter: Pair - filter name, description
 
 
@@ -187,7 +187,7 @@ Source: `UserApi.java`
    Change your own password. If you are Admin, you can change other's passwords as well.
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown user
    :<json string passwd: New password
    
@@ -197,7 +197,7 @@ Source: `UserApi.java`
    Get currently active clients to (the websocket interface)
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 403: Forbidden
    :>jsonarr string uid: User id (IP-address:port)
    :>jsonarr string username: Login name (if logged in)
@@ -209,7 +209,7 @@ Source: `UserApi.java`
    Get groups (roles) available for logged in user
    
    :status 200: Ok 
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :>jsonarr string gid: Group id
    
    
@@ -219,7 +219,7 @@ Source: `UserApi.java`
    Return a list of usernames (userids only)
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :>jsonarr string uid: User id
    
    
@@ -228,7 +228,7 @@ Source: `UserApi.java`
    Return a list of users of the system
    
    :status 200: Ok
-   :status 401: Unauthorized 
+   :status 401: Authentication failed
    :status 403: Forbidden
 
    :>jsonarr string ident: User id
@@ -248,7 +248,7 @@ Source: `UserApi.java`
    Add a new user to the system
    
    :status 200: Ok
-   :status 401: Unauthorized 
+   :status 401: Authentication failed
    :status 403: Forbidden
    :status 400: Probable cause: User already exists
       
@@ -271,7 +271,7 @@ Source: `UserApi.java`
 
    :parameter userid: Unique indentifier of user
    :status 200: Ok
-   :status 401: Unauthorized 
+   :status 401: Authentication failed
    :status 403: Forbidden
    :status 404: Unknown user
       
@@ -294,7 +294,7 @@ Source: `UserApi.java`
    :parameter userid: Unique indentifier of user
       
    :status 200: Ok
-   :status 401: Unauthorized 
+   :status 401: Authentication failed
    :status 403: Forbidden
    :status 404: Unknown user
    :status 400: Cannot parse input
@@ -319,7 +319,7 @@ Source: `UserApi.java`
     
    :parameter userid: Unique indentifier of user
    :status 200: Ok
-   :status 401: Unauthorized 
+   :status 401: Authentication failed
    :status 403: Forbidden
    
    
@@ -365,7 +365,7 @@ Source: `ItemApi.java`
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 403: Not authorized for access to item
    :status 500: Error
@@ -383,7 +383,7 @@ Source: `ItemApi.java`
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 403: Not aauthorized for access to item
    :status 500: Error
@@ -397,7 +397,7 @@ Source: `ItemApi.java`
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 403: Not aauthorized for access to item
    :status 500: Error
@@ -414,7 +414,7 @@ Source: `ItemApi.java`
 
    Reset trail and other info about item
   
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 403: Not authorized for access to item
 
@@ -424,7 +424,7 @@ Source: `ItemApi.java`
 
    Change colour of trail
      
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 401: Unauthorized for access to item
    
@@ -436,7 +436,7 @@ Source: `ItemApi.java`
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 403: Not authorized for access to item   
   
@@ -451,7 +451,7 @@ Source: `ItemApi.java`
    :parameter tag: The tag to be added
       
    :status 200: Ok   
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 403: Not authorized for access to item
    :<jsonarr string tag: Tag to be added 
@@ -466,7 +466,7 @@ Source: `ItemApi.java`
    :parameter tag: The tag to be removed
    
    :status 200: Ok   
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 403: Forbidden (or not authorized for access to item)
    
@@ -481,7 +481,7 @@ Source: `ItemApi.java`
    :form tags: Comma separated list of tags
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :>jsonarr string ident: Ident or callsign for the item
    :>jsonarr name: Name of the item
    :>jsonarr alias: Alias of the item if set
@@ -498,7 +498,7 @@ Source: `ItemApi.java`
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 403: Not authorized for access to item  
          
@@ -512,7 +512,7 @@ Source: `ItemApi.java`
    
    :parameter id: Identifier of tracker item (callsign)
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Unknown tracker item
    :status 401: Not authorized for access to item  
    :status 401: Alias can only be set by owner
@@ -625,7 +625,7 @@ Source: `AprsObjectApi.java`
    Add an APRS object to this server 
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 400: Object already exists
    :status 400: Invalid object. Couldn't post
    :status 500: Couldn't post object
@@ -644,7 +644,7 @@ Source: `AprsObjectApi.java`
     Update an APRS object on this server 
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 400: Object not found 
       
    :<json double[] pos: Position of APRS object (longitude, latitude)
@@ -659,7 +659,7 @@ Source: `AprsObjectApi.java`
     
    :parameter id: Identifier of item (callsign)
    :status 200: Ok   
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 400: Object not found 
    :status 500: Couldn't delete object
    
@@ -682,7 +682,7 @@ Source: `MailBoxApi.java`
    Returns the content of the user's mailbox (list of messsages)
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 401: No mailbox available
    
    :>jsonarr long msgId: Unique identifier of message;
@@ -700,7 +700,7 @@ Source: `MailBoxApi.java`
    Post a message to another user (or to APRS)
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 400: Cannot parse input
    :status 404: Unknown from-address
    :status 404: Callsign is needed for raw APRS messages
@@ -724,7 +724,7 @@ Source: `MailBoxApi.java`
    :parameter msgid: Unique indentifier of message
 
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 400: Message id must be a number
    
    
@@ -750,7 +750,7 @@ Source: `BullBoardApi.java`
 
    Returns a list of active bulleti groups
 
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 200: Ok
    :>jsonarr string id: Group id 
 
@@ -761,7 +761,7 @@ Source: `BullBoardApi.java`
    
    :parameter groupid: Unique indentifier of group
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Group not found.
    
    :>jsonarr string id: Callsign of sender 
@@ -773,7 +773,7 @@ Source: `BullBoardApi.java`
     
    :parameter groupid: Unique indentifier of group
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Group not found.
    
    :>jsonarr string id: Callsign of sender 
@@ -786,7 +786,7 @@ Source: `BullBoardApi.java`
    
    :parameter groupid: Unique indentifier of group
    :status 200: Ok  
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 403: No callsign registered for user.
    :status 400: Cannot parse input
    
@@ -803,7 +803,7 @@ Source: `BullBoardApi.java`
    :parameter sender: Callsign of sender
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 404: Group not found.
    
    :>jsonarr string id: Callsign of sender 
@@ -832,7 +832,7 @@ Source: `SarApi.java`
    Returns a list of IPPs for the given user.
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 500: No authorization info found.
    
    :>jsonarr string id: Unique identifier 
@@ -849,7 +849,7 @@ Source: `SarApi.java`
    Add a IPP
 
    :status 200: Ok  
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 500: No authorization info found.
    :status 400: Cannot parse input
    
@@ -869,7 +869,7 @@ Source: `SarApi.java`
    :parameter id: Unique indentifier of IPP
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 500: No authorization info found.
    :status 404: Not found.
    
@@ -890,7 +890,7 @@ Source: `SarApi.java`
    :parameter id: Unique indentifier of IPP
    
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 500: No authorization info found. 
    :status 400: Cannot parse input
    :status 404: Not found.
@@ -912,6 +912,6 @@ Source: `SarApi.java`
    :parameter id: Unique indentifier of IPP
 
    :status 200: Ok
-   :status 401: Unauthorized
+   :status 401: Authentication failed
    :status 500: No authorization info found.
 
