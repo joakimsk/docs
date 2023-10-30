@@ -177,7 +177,6 @@ Source: ´SysAdminApi.java´
    :status 401: Authentication failed
    :status 403: Forbidden
 
-
 .. http:get:: /system/adm/status
 
    Get status information. 
@@ -188,14 +187,84 @@ Source: ´SysAdminApi.java´
 
 .. http:get:: /system/adm/clients
 
-
    Get list of clients connected
    
    :status 200: Ok
    :status 401: Authentication failed
    :status 403: Forbidden
 
+.. http:get:: /system/adm/server
+
+   Get server config information
    
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+.. http:put:: /system/adm/server
+
+   Update server config.
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+.. http:get:: /system/adm/ownpos
+
+   Get server's own position.
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+.. http:put:: /system/adm/ownpos
+
+   Update server's own position
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+.. http:get:: /system/adm/channels
+
+   Get config of channels (list of channels).
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+.. http:post:: /system/adm/channels
+
+   Add channel config.
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+.. http:get:: /system/adm/channels/{id}
+
+   Get a specific channel config.
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+.. http:put:: /system/adm/channels/{id}
+
+   Update a specific channel config.
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+.. http:delete:: /system/adm/channels/{id}
+
+   Delete a channel.
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
 Users and clients
 -----------------
 Source: `UserApi.java`
