@@ -169,8 +169,13 @@ Source: ´SysAdminApi.java´
 |                            | DELETE|A| DELETE a channel                                 |
 +----------------------------+-------+-+--------------------------------------------------+
 
-(tbd)
+.. http:get:: /system/adm/restart
 
+   Restart the aprsd daemon. 
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+  
 
    
 Users and clients
