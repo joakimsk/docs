@@ -169,13 +169,31 @@ Source: ´SysAdminApi.java´
 |                            | DELETE|A| DELETE a channel                                 |
 +----------------------------+-------+-+--------------------------------------------------+
 
-.. http:get:: /system/adm/restart
+.. http:put:: /system/adm/restart
 
    Restart the aprsd daemon. 
    
    :status 200: Ok
    :status 401: Authentication failed
-  
+   :status 403: Forbidden
+
+
+.. http:get:: /system/adm/status
+
+   Get status information. 
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+.. http:get:: /system/adm/clients
+
+
+   Get list of clients connected
+   
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
 
    
 Users and clients
