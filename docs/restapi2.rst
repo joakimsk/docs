@@ -8,6 +8,7 @@ The URL identifies the resource (or service) to be invoked. For REST APIs, the U
 
 Most services will require authorization: O=open, L=login, S=SAR, A=admin.
 
+See more info on Client Authentication. To access ‘L’, ‘S’ or ‘A’ services, requests must be authenticated. To access ‘O’ services, we do not use authentication.
 
 
 Trackers API
