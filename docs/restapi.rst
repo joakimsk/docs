@@ -188,7 +188,7 @@ Source: ´SysAdminApi.java´
    :>json Date runsince: time when server was last started
    :>json string version: version of software
    :>json int items: number of items
-   :>json int ownobj: 
+   :>json int ownobj: number of APRS objects
    :>json int clients: number of clients
    :>json int loggedin: number of logged in clients
    :>json long usedmem: used memory
