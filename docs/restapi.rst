@@ -185,6 +185,17 @@ Source: ´SysAdminApi.java´
    :status 401: Authentication failed
    :status 403: Forbidden
 
+   :>json Date runsince: time when server was last started
+   :>json string version: version of software
+   :>json int items: number of items
+   :>json int ownobj: 
+   :>json int clients: number of clients
+   :>json int loggedin: number of logged in clients
+   :>json long usedmem: used memory
+   :>json string plugins[]: List of plugins
+   :>json Channel channels[]: List of channel-config
+   :>json string remotectl: Remote servers
+
 .. http:get:: /system/adm/clients
 
    Get list of clients connected
@@ -306,7 +317,7 @@ Source: `UserApi.java`
    :>jsonarr string[] filter: Pair - filter name, description
 
 
-.. http:get:: /mypasswd
+.. http:put:: /mypasswd
 
    Change your own password. If you are Admin, you can change other's passwords as well.
    
