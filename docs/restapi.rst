@@ -193,7 +193,7 @@ Source: ´SysAdminApi.java´
    :>json int loggedin: number of logged in clients
    :>json long usedmem: used memory
    :>json string plugins[]: List of plugins
-   :>json Channel channels[]: List of channel-config
+   :>json Channel channels[]: List of channels (ident, name)
    :>json string remotectl: Remote servers
 
 .. http:get:: /system/adm/clients
@@ -203,6 +203,12 @@ Source: ´SysAdminApi.java´
    :status 200: Ok
    :status 401: Authentication failed
    :status 403: Forbidden
+   :>jsonarr Date created: time when connection was established
+   :>jsonarr string cid: client identifier (ip:port) 
+   :>jsonarr long in: number of incoming messages
+   :>jsonarr long out: number of outgoing messages (map updates)
+   :>jsonarr string userid: User name if logged in 
+   :>jsonarr boolean mobile: True if connection from mobile app 
 
 .. http:get:: /system/adm/server
 
