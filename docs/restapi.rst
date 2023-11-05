@@ -312,9 +312,9 @@ Source: ´SysAdminApi.java´
    :>jsonarr string ident: Identifier of channel
    :>jsonarr string name: Name of channel
    :>jsonarr boolean active: True if the channel is active
-   :>jsonarr boolean rfchan: True if the channel is a RF channel
-   :>jsonarr boolean inetchan: True if the channel is APRS/IS channel
-   :>jsonarr boolean isrf: ??
+   :>jsonarr boolean rfchan: True if primary RF channel
+   :>jsonarr boolean inetchan: True if primary APRS/IS channel
+   :>jsonarr boolean isrf: True if the channel is on radio (RF)
    :>jsonarr boolean isaprs: True if channel is for APRS traffic
    :>jsonarr GenChanInfo generic: Should be null
    :>jsonarr Channel.JsConfig: Should be null
