@@ -317,7 +317,7 @@ Source: ´SysAdminApi.java´
    :>jsonarr boolean isrf: True if the channel is on radio (RF)
    :>jsonarr boolean isaprs: True if channel is for APRS traffic
    :>jsonarr GenChanInfo generic: Should be null
-   :>jsonarr Channel.JsConfig: Should be null
+   :>jsonarr Channel.JsConfig specific: Should be null
 
 
 .. http:post:: /system/adm/channels
