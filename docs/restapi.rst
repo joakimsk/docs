@@ -225,9 +225,9 @@ Source: ´SysAdminApi.java´
    :>json string path_igate: Digipath for igate
    :>json string path_messages: Digipath for messaging
    :>json string path_objects: Digipath for objects
-   :>json string always_rf: Regex to specify what DESTs to always be sent on RF
+   :>json string always_rf: What DESTs to always be sent on RF (regex)
    :>json boolean remotectl: Activate remote control protocol
-   :>json int remote_radius: Radius in km where we want to receive item-updates
+   :>json int remote_radius: Radius in km to receive item-updates
    :>json rc_server: Remote control server to connect to
    :>json authkey: Authentication key to be used in remote control 
 
@@ -247,9 +247,9 @@ Source: ´SysAdminApi.java´
    :<json string path_igate: Digipath for igate
    :<json string path_messages: Digipath for messaging
    :<json string path_objects: Digipath for objects
-   :<json string always_rf: Regex to specify what DESTs to always be sent on RF
+   :<json string always_rf: What DESTs to always be sent on RF (regex)
    :<json boolean remotectl: Activate remote control protocol
-   :<json int remote_radius: Radius in km where we want to receive item-updates
+   :<json int remote_radius: Radius in km to receive item-updates
    :<json rc_server: Remote control server to connect to
    :<json authkey: Authentication key to be used in remote control 
 
@@ -285,6 +285,22 @@ Source: ´SysAdminApi.java´
    :status 200: Ok
    :status 401: Authentication failed
    :status 403: Forbidden
+   :<json boolean txon: Activate transmitting of own position
+   :<json boolean allowrf: Allow transmitting pos on RF
+   :<json boolean compress: Use compressed report format
+   :<json string symbol: APRS symbol (2 characters)
+   :<json string rfpath: Digipath for RF transmissions
+   :<json string comment: Comment string to be used in reports
+   :<json double pos[]: Position (long, lat)
+   :<json boolean gpson: Use GPS
+   :<json boolean adjustclock: Adjust local clock from GPS
+   :<json string gpsport: Serial port for GPS
+   :<json string baud: Baud rate for GPS
+   :<json int minpause: Minimum pause between transmissions
+   :<json int maxpause: Maximum pause between transmissions
+   :<json int mindist: Minimum distance (meters) moved before transmitting
+   :<json int maxturn: Maximum change in direction (degrees) before transmitting
+
 
 .. http:get:: /system/adm/channels
 
@@ -293,6 +309,16 @@ Source: ´SysAdminApi.java´
    :status 200: Ok
    :status 401: Authentication failed
    :status 403: Forbidden
+   :>jsonarr string ident: Identifier of channel
+   :>jsonarr string name: Name of channel
+   :>jsonarr boolean active: True if the channel is active
+   :>jsonarr boolean rfchan: True if the channel is a RF channel
+   :>jsonarr boolean inetchan: True if the channel is APRS/IS channel
+   :>jsonarr boolean isrf: ??
+   :>jsonarr boolean isaprs: True if channel is for APRS traffic
+   :>jsonarr GenChanInfo generic: Should be null
+   :>jsonarr Channel.JsConfig: Should be null
+
 
 .. http:post:: /system/adm/channels
 
