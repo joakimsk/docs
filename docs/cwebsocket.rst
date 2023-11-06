@@ -8,7 +8,7 @@ In the Webservice/REST API, two websockets are offered to clients. They are:
     Request a websocket for real-time map overlay updates with trackers, etc. It is open for all, but login- and authorized users can receive different content. 
     
 `/notify`
-    Request a `websocket for notifications <#websocket-for-notifications>`_ . This is a generic publish/subscribe service.
+    Request a `websocket for notifications <#websocket-for-notifications>`_. This is a generic publish/subscribe service.
     
 
 Websocket for map overlay updates
