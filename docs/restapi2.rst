@@ -39,7 +39,7 @@ Source: TrackerApi.java
    :form user: (optional) Userid of user to get trackers for. If not given, use the identity of user that performs the request.
    :status 200: Ok
    :status 401: Authentication failed
-   :status 400: No authorization info found
+   :status 500: No authorization info found
    :status 500: If something went wrong with the database SQL query
    
    :>json string id: The callsign of the tracker
@@ -57,7 +57,7 @@ Source: TrackerApi.java
    :form user: (optional) Userid of user to get trackers for. If not given, use the identity of user that performs the request.
    :status 200: Ok
    :status 401: Authentication failed
-   :status 400: No authorization info found
+   :status 500: No authorization info found
    :status 400: Cannot parse input
    :status 403: Not allowed to manage this tracker
    :status 403: Item is managed already
@@ -80,7 +80,7 @@ Source: TrackerApi.java
    :status 401: Authentication failed
    :status 404: Item not found
    :status 403: Item is owned by another user
-   :status 400: No authorization info found
+   :status 500: No authorization info found
    :status 500: Server error or if something went wrong with the database SQL query
    
    
@@ -90,7 +90,7 @@ Source: TrackerApi.java
 
    :status 200: Ok
    :status 400: Input parsing error
-   :status 400: Authorization info not found
+   :status 500: Authorization info not found
    :status 400: User xxx not found
    :status 403: Item not owned by user 
    :status 500: If something went wrong with the database SQL query, 
@@ -109,7 +109,7 @@ Source: TrackerApi.java
 
    :status 200: Ok
    :status 401: Authentication failed
-   :status 400: No authorization info found
+   :status 500: No authorization info found
    :status 500: If something went wrong with the database SQL query
    :>jsonarr string tag: Tag
 
@@ -120,7 +120,7 @@ Source: TrackerApi.java
 
    :status 200: Ok
    :status 401: Authentication failed
-   :status 400: No authorization info found
+   :status 500: No authorization info found
    :status 500: If something went wrong with the database SQL query
    :<jsonarr string tag: Tag
    
@@ -152,7 +152,9 @@ Source: SignsApi.java
    Returns a list of sign objects
 
    :status 200: Ok
-   :status 500: If something went wrong with the database SQL query or if authorization info was not found.
+   :status 401: Authentication failed
+   :status 500: No authorization info found
+   :status 500: If something went wrong with the database SQL query
    
    :>jsonarr string id: Unique id for sign
    :>jsonarr string url: Link to a web-page or image
@@ -169,8 +171,10 @@ Source: SignsApi.java
    Add a sign
 
    :status 200: Ok
+   :status 401: Authentication failed
    :status 400: Cannot parse input
-   :status 500: If something went wrong with the database SQL query or if authorization info was not found.
+   :status 500: No authorization info found
+   :status 500: If something went wrong with the database SQL query
    
    :<json string id: Unique id for sign
    :<json string url: Link to a web-page or image
@@ -190,8 +194,10 @@ Source: SignsApi.java
    :parameter string id: Unique dent of the sign
    
    :status 200: Ok
+   :status 401: Authentication failed
    :status 404: Object not found
-   :status 500: If something went wrong with the database SQL query or if authorization info was not found.
+   :status 500: No authorization info found
+   :status 500: If something went wrong with the database SQL query
    
    :>json string id: Unique id for sign
    :>json string url: Link to a web-page or image
@@ -211,8 +217,10 @@ Source: SignsApi.java
    :parameter string id: Unique ident of the sign
    
    :status 200: Ok
-   :status 404: Object not found
-   :status 500: If something went wrong with the database SQL query or if authorization info was not found.
+   :status 404: Object not found   
+   :status 401: Authentication failed
+   :status 500: No authorization info found
+   :status 500: If something went wrong with the database SQL query
    
    :<json string id: Unique id for sign (will be ignored)
    :<json string url: Link to a web-page or image
@@ -233,8 +241,10 @@ Source: SignsApi.java
    :parameter string id: Unique ident of the sign
    
    :status 200: Ok
-   :status 400: Object not found
-   :status 500: If something went wrong with the database SQL query or if authorization info was not found.
+   :status 400: Object not found   
+   :status 401: Authentication failed
+   :status 500: No authorization info found
+   :status 500: If something went wrong with the database SQL query
    
    
    
