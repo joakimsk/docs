@@ -34,10 +34,12 @@ Source: TrackerApi.java
 
 .. http:get:: /trackers
 
-   Returns a list of tracker objects owned by user. 
+   Returns a list of tracker objects owned by user or by the user given as request parameter 'user'. 
 
    :form user: (optional) Userid of user to get trackers for. If not given, use the identity of user that performs the request.
    :status 200: Ok
+   :status 401: Authentication failed
+   :status 400: No authorization info found
    :status 500: If something went wrong with the database SQL query
    
    :>json string id: The callsign of the tracker
@@ -54,6 +56,11 @@ Source: TrackerApi.java
 
    :form user: (optional) Userid of user to get trackers for. If not given, use the identity of user that performs the request.
    :status 200: Ok
+   :status 401: Authentication failed
+   :status 400: No authorization info found
+   :status 400: Cannot parse input
+   :status 403: Not allowed to manage this tracker
+   :status 403: Item is managed already
    :status 500: If something went wrong with the database SQL query
    
    :<json string id: The callsign of the tracker
@@ -70,7 +77,11 @@ Source: TrackerApi.java
 
    :parameter string id: Callsign/ident of the tracker 
    :status 200: Ok
-   :status 500: If something went wrong with the database SQL query or if authorization info was not found.
+   :status 401: Authentication failed
+   :status 404: Item not found
+   :status 403: Item is owned by another user
+   :status 400: No authorization info found
+   :status 500: Server error or if something went wrong with the database SQL query
    
    
 .. http:put:: /trackers/(id)
@@ -78,8 +89,10 @@ Source: TrackerApi.java
    Update a tracker 
 
    :status 200: Ok
-   :status 400: Input parsing error, authorization of user or owner of tracker not found
-   :status 403: Tracker not owned by user 
+   :status 400: Input parsing error
+   :status 400: Authorization info not found
+   :status 400: User xxx not found
+   :status 403: Item not owned by user 
    :status 500: If something went wrong with the database SQL query, 
    
    :<json string id: The callsign of the tracker
@@ -95,7 +108,9 @@ Source: TrackerApi.java
    Returns a list of tracker tags. Tags will be applied to all trackers owned by user. 
 
    :status 200: Ok
-   :status 500: If something went wrong with the database SQL query or if authorization info was not found.
+   :status 401: Authentication failed
+   :status 400: No authorization info found
+   :status 500: If something went wrong with the database SQL query
    :>jsonarr string tag: Tag
 
    
@@ -104,6 +119,8 @@ Source: TrackerApi.java
    Add tags to be applied to trackers owned by user. 
 
    :status 200: Ok
+   :status 401: Authentication failed
+   :status 400: No authorization info found
    :status 500: If something went wrong with the database SQL query
    :<jsonarr string tag: Tag
    
