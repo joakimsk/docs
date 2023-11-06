@@ -327,30 +327,72 @@ Source: ´SysAdminApi.java´
    :status 200: Ok
    :status 401: Authentication failed
    :status 403: Forbidden
+   :status 200: Ok
+   :status 401: Authentication failed
+   :status 403: Forbidden
+
+   :<json string ident: (ignored)
+   :<json string name: Name of channel
+   :<json boolean active: True if the channel is active
+   :<json boolean rfchan: True if primary RF channel
+   :<json boolean inetchan: True if primary APRS/IS channel
+   :<json boolean isrf: True if the channel is on radio (RF)
+   :<json boolean isaprs: True if channel is for APRS traffic
+   :<json GenChanInfo generic: Generic channel config
+   :<json Channel.JsConfig specific: Type specific channel config
+
+
 
 .. http:get:: /system/adm/channels/{id}
 
    Get a specific channel config.
    
+   :parameter id: Channel identifier
    :status 200: Ok
    :status 401: Authentication failed
    :status 403: Forbidden
+
+   :>json string ident: Channel identifier
+   :>json string name: Name of channel
+   :>json boolean active: True if the channel is active
+   :>json boolean rfchan: True if primary RF channel
+   :>json boolean inetchan: True if primary APRS/IS channel
+   :>json boolean isrf: True if the channel is on radio (RF)
+   :>json boolean isaprs: True if channel is for APRS traffic
+   :>json GenChanInfo generic: Generic channel config
+   :>json Channel.JsConfig specific: Type specific channel config
+
+
 
 .. http:put:: /system/adm/channels/{id}
 
    Update a specific channel config.
-   
+
+   :parameter id: Channel identifier
    :status 200: Ok
    :status 401: Authentication failed
    :status 403: Forbidden
+
+   :<json string ident: (ignored)
+   :<json string name: Name of channel
+   :<json boolean active: True if the channel is active
+   :<json boolean rfchan: True if primary RF channel
+   :<json boolean inetchan: True if primary APRS/IS channel
+   :<json boolean isrf: True if the channel is on radio (RF)
+   :<json boolean isaprs: True if channel is for APRS traffic
+   :<json GenChanInfo generic: Generic channel config
+   :<json Channel.JsConfig specific: Type specific channel config
+
 
 .. http:delete:: /system/adm/channels/{id}
 
    Delete a channel.
-   
+ 
+   :parameter id: Channel identifier
    :status 200: Ok
    :status 401: Authentication failed
    :status 403: Forbidden
+
 
 Users and clients
 -----------------
