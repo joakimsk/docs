@@ -112,3 +112,18 @@ Updates are sent to client when there is a change within the area of interest. T
  time	        Date	              Timestamp (ISO format)
  path           String                Digipeater path (if APRS)
 ============== ===================== ==================================================================
+
+
+    
+
+Websocket for notifications
+---------------------------
+
+This service will provide various notifications, primarily from servers to clients. Clients can subscribe to different 'rooms' provided by servers. Clients that subscribe to a room get notifications posted to that room by the server (or other clients). This is a kind of general publish/subscribe service. Clients can send the following commands to the server over the websocket::
+
+    SUBSCRIBE room
+    UNSUBSCRIBE room
+    PUT room,argument
+
+
+
