@@ -23,7 +23,7 @@ Aprsd is primarily an *APRS client* (and even an APRS igate if configured to do 
 Interoperability and extensibility
 ----------------------------------
 
-Polaric Server is an open client/server application that supports interoperability and extensibility. Interoperability refers to the ability of different systems, applications, or components to exchange information and work together effectively. Extensibility is the ability to add functionality with minimal need to change the core application. All this can be achieved through:
+Polaric Server is an open-source client/server application that supports interoperability and extensibility. Interoperability refers to the ability of different systems, applications, or components to exchange information and work together effectively. Extensibility is the ability to add functionality with minimal need to change the core application. All this can be achieved through:
 
 * *Standardized Protocols*: The client and server communicate using standardized protocols, such as HTTP or WebSocket, which allow systems developed by different vendors or using different technologies to interact seamlessly.
 
