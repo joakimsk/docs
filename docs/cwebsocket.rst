@@ -123,7 +123,13 @@ This service will provide various notifications, primarily from servers to clien
 
     SUBSCRIBE room
     UNSUBSCRIBE room
-    PUT room,argument
+    PUT room,data
 
+Where the parameters are: 
+
+ * **room** - name of the room. Rooms can be created by servers. 
+ * **data** - data to be sent to subscribers of the room. Can be JSON encoded. 
+
+More documentation on the rooms that are available on aprsd should come here...
 
 
