@@ -270,11 +270,11 @@ Source: HistApi.java
 +------------------------------------+-------+-+------------------------------------------------------+
 |`/hist/{id}/aprs`                   | GET   |O| Get APRS raw packets for a given callsign            |
 +------------------------------------+-------+-+------------------------------------------------------+
-|`/hist/{id}/trail`                  | GET   |O| Get historical trail for a given callsign            |
+|`/hist/{id}/trail`                  | GET   |L| Get historical trail for a given callsign            |
 +------------------------------------+-------+-+------------------------------------------------------+
 |`/hist/{id}/hrdvia`                 | GET   |O| Get points heard via a callsign                      |
 +------------------------------------+-------+-+------------------------------------------------------+
-|`/hist/snapshot/{x1}/{x2}/{x3]/{x4}`| GET   |O| Get snapshot (area, time)                            |
+|`/hist/snapshot/{x1}/{x2}/{x3]/{x4}`| GET   |L| Get snapshot (area, time)                            |
 +------------------------------------+-------+-+------------------------------------------------------+
    
    
@@ -288,7 +288,7 @@ Source: HistApi.java
    :form tfrom: (optional) Start of timespan to search [1]_
    
    :status 200: Ok
-   :status 400: Cannot parse number or time-string
+   :status 400: Cannot parse number | date/time
    :status 500: If something went wrong with the database SQL query
    
    :>jsonarr Date time: Timestamp for packet or when received 
@@ -310,7 +310,9 @@ Source: HistApi.java
    :form tfrom: (optional) Start of timespan to search [1]_
    
    :status 200: Ok
-   :status 400: Cannot parse time-string
+   :status 401: Authentication failed
+   :status 404: Point not found   
+   :status 400: Cannot parse date/time
    :status 500: If something went wrong with the database SQL query
    
    
@@ -324,7 +326,7 @@ Source: HistApi.java
    :form tfrom: (optional) Start of timespan to search [1]_
    
    :status 200: Ok
-   :status 400: Cannot parse time-string
+   :status 400: Cannot parse date/time
    :status 500: If something went wrong with the database SQL query
    
    
@@ -343,7 +345,8 @@ Source: HistApi.java
    :form reset: Reset colours used for the trails 
     
    :status 200: Ok
-   :status 400: Cannot parse number or time-string
+   :status 401: Authentication faied
+   :status 400: Cannot parse number | date/time
    :status 500: If something went wrong with the database SQL query
    
      
