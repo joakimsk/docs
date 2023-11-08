@@ -137,7 +137,7 @@ The aprsd creates the following rooms for notifications. Observe that some of th
 specific for APRS callsigns.
 
 ======================== ============== =================================================
-Room name                Data content   Comment
+Room name                Data content   Purpose
 ======================== ============== =================================================
 messages:<userid>        Message        Short messages - incoming message
 msgstatus:<userid>       Status         Short messages - status
