@@ -141,9 +141,9 @@ Room name                Data content   Comment
 ======================== ============== =================================================
 messages:<userid>        Message        Short messages - incoming message
 msgstatus:<userid>       Status         Short messages - status
-auth:<userid>            -              
-bullboard                -              Change in bulletin board content
-telemetry:<callsign>     -              Change in telemetry data for a callsign
+auth:<userid>                          
+bullboard                               Change in bulletin board content
+telemetry:<callsign>                    Change in telemetry data for a callsign
 notify:SYSTEM            Notification   User notification from system
 notify:ADMIN             Notification   User notification 
 notify:<userid>          Notification   User notification for specific user
