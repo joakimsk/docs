@@ -130,6 +130,25 @@ Where the parameters are:
  * **room** - name of the room. Rooms can be created by servers. 
  * **data** - data to be sent to subscribers of the room. Can be JSON encoded. 
 
-More documentation on the rooms that are available on aprsd should come here...
+Rooms offered by aprsd
+^^^^^^^^^^^^^^^^^^^^^^
+
+The aprsd creates the following rooms for notifications. Observe that some of the rooms are specific for users or
+specific for APRS callsigns.
+
+======================== ============== =================================================
+Room name                Data content   Comment
+======================== ============== =================================================
+messages:<userid>        Message        Short messages - incoming message
+msgstatus:<userid>       Status         Short messages - status
+auth:<userid>            -              
+bullboard                -              Change in bulletin board content
+telemetry:<callsign>     -              Change in telemetry data for a callsign
+notify:SYSTEM            Notification   User notification from system
+notify:ADMIN             Notification   User notification 
+notify:<userid>          Notification   User notification for specific user
+======================== ============== =================================================
+
+
 
 
