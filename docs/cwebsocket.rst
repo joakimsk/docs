@@ -134,14 +134,15 @@ Rooms offered by aprsd
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The aprsd creates the following rooms for notifications. Observe that some of the rooms are specific for users or
-specific for APRS callsigns.
+specific for APRS callsigns. Rooms without data content just gives notifications that change has occured and client 
+can the use REST API to get updated information. 
 
 ======================== ============== =================================================
 Room name                Data content   Purpose
 ======================== ============== =================================================
 messages:<userid>        Message        Short messages - incoming message
 msgstatus:<userid>       Status         Short messages - status
-auth:<userid>                          
+auth:<userid>                           Change in user role or authorizations
 bullboard                               Change in bulletin board content
 telemetry:<callsign>                    Change in telemetry data for a callsign
 notify:SYSTEM            Notification   User notification from system
