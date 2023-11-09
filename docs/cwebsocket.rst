@@ -148,8 +148,8 @@ sign                                    Change in signs
 object                                  Change in JSON objects
 sharing                                 Change in sharings of objects 
 telemetry:<callsign>                    Change in telemetry data for a callsign
-notify:SYSTEM            Notification   User notification from system
-notify:ADMIN             Notification   User notification 
+notify:SYSTEM            Notification   General system notications
+notify:ADMIN             Notification   User notification for admin-users
 notify:<userid>          Notification   User notification for specific user
 ======================== ============== =================================================
 
@@ -157,7 +157,7 @@ notify:<userid>          Notification   User notification for specific user
 User notification events
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-A special type of events are user-notifications. They are sent to users and the client-app can display them on screen. A typical way to do this is to show a icon showing the count of active notifications. The user can click to see the list of notifications which indicate systems events, that messages has arrived, etc.. 
+A special type of events are *user-notifications*. They are sent to the client-app which can display them on the screen. A typical way to do this is to show a icon showing the count of active notifications. The user can click to see the list of notifications which indicate systems events, that messages has arrived, etc.. 
 
 User notifications carry a JSON-encoded object with the following fields: 
 
@@ -169,5 +169,5 @@ User notifications carry a JSON-encoded object with the following fields:
  ttl          integer   Time to live (in seconds)
 ============ ========= ========================================
 
-Notification type can be 'loc', 'check', 'chat', 'mail', 'system', 'error', 'alert' or 'info'
+Notification type can be used to identify purposes of the message. For example to report errors. *Polaric Webapp2* currently recognizs the following: ``loc``, ``check``, ``chat``, ``mail``, ``system``, ``error``, ``alert`` or ``info`` and uses different icons when displaying those. 
 
