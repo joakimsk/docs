@@ -169,5 +169,5 @@ User notifications carry a JSON-encoded object with the following fields:
  ttl          integer   Time to live (in seconds)
 ============ ========= ========================================
 
-The type field can be used to identify purposes of events. For example to report errors. *Polaric Webapp2* currently recognizs the following: ``loc``, ``check``, ``chat``, ``mail``, ``system``, ``error``, ``alert`` or ``info`` and uses different icons when displaying those. 
+The type field can be used to identify purposes of events. For example to report errors. *Polaric Webapp2* currently recognizes the following: ``loc``, ``check``, ``chat``, ``mail``, ``system``, ``error``, ``alert`` or ``info`` and uses different icons when displaying those. 
 
