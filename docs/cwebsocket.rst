@@ -159,14 +159,14 @@ User notification events
 
 A special type of events are user-notifications. They are sent to users and the client-app can display them on screen. A typical way to do this is to show a icon showing the count of active notifications. The user can click to see the list of notifications which indicate systems events, that messages has arrived, etc.. 
 
-User notifications carry JSON encoded object with the following fields: 
+User notifications carry a JSON-encoded object with the following fields: 
 
 ============ ========= ========================================
-type         string    Notification type
-from         string    Sender of the event (userid or 'admin')
-text         string    Content, can be JSON encoded
-time         date      Timestamp
-ttl          integer   Time to live (in seconds)
+ type         String    Notification type
+ from         String    Sender of the event (userid or 'admin')
+ text         String    Content, can be JSON encoded
+ time         Date      Timestamp
+ ttl          integer   Time to live (in seconds)
 ============ ========= ========================================
 
 Notification type can be 'loc', 'check', 'chat', 'mail', 'system', 'error', 'alert' or 'info'
