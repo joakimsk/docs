@@ -133,8 +133,8 @@ Where the parameters are:
 Rooms offered by aprsd
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The aprsd creates the following rooms. Observe that some of the rooms can be created specific for users or
-specific for APRS callsigns. Rooms without data-content just indicates that change has happened and client 
+The *aprsd* creates the following rooms. Observe that some of the rooms can be created specific for users or
+specific for APRS callsigns. Events without data-content just indicates that change has happened and client 
 can the use REST API to get updated information. 
 
 ======================== ============== =================================================
@@ -164,10 +164,10 @@ User notifications carry a JSON-encoded object with the following fields:
 ============ ========= ========================================
  type         String    Notification type
  from         String    Sender of the event (userid or 'admin')
- text         String    Content, can be JSON encoded
+ text         String    Content, short text
  time         Date      Timestamp
  ttl          integer   Time to live (in seconds)
 ============ ========= ========================================
 
-Notification type can be used to identify purposes of the message. For example to report errors. *Polaric Webapp2* currently recognizs the following: ``loc``, ``check``, ``chat``, ``mail``, ``system``, ``error``, ``alert`` or ``info`` and uses different icons when displaying those. 
+The type field can be used to identify purposes of events. For example to report errors. *Polaric Webapp2* currently recognizs the following: ``loc``, ``check``, ``chat``, ``mail``, ``system``, ``error``, ``alert`` or ``info`` and uses different icons when displaying those. 
 
