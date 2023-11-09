@@ -161,6 +161,13 @@ A special type of events are user-notifications. They are sent to users and the 
 
 User notifications carry JSON encoded object with the following fields: 
 
+============ ========= ========================================
+type         string    Notification type
+from         string    Sender of the event (userid or 'admin')
+text         string    Content, can be JSON encoded
+time         date      Timestamp
+ttl          integer   Time to live (in seconds)
+============ ========= ========================================
 
-
+Notification type can be 'loc', 'check', 'chat', 'mail', 'system', 'error', 'alert' or 'info'
 
