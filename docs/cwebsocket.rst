@@ -119,7 +119,7 @@ Updates are sent to client when there is a change within the area of interest. T
 Websocket for notifications
 ---------------------------
 
-This service will provide various notifications, primarily from servers to clients. Clients can subscribe to different 'rooms' provided by servers. Clients that subscribe to a room get notifications posted to that room by the server (or other clients). This is a kind of general publish/subscribe service. Clients can send the following commands to the server over the websocket::
+This service will provide various asynchronous messages (events), primarily from servers to clients. Clients can subscribe to different 'rooms' provided by servers. Clients that subscribe to a room get messages posted to that room by the server (or other clients). This is a kind of general publish/subscribe service. Clients can send the following commands to the server over the websocket::
 
     SUBSCRIBE room
     UNSUBSCRIBE room
@@ -133,8 +133,8 @@ Where the parameters are:
 Rooms offered by aprsd
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The aprsd creates the following rooms for notifications. Observe that some of the rooms are specific for users or
-specific for APRS callsigns. Rooms without data content just gives notifications that change has occured and client 
+The aprsd creates the following rooms. Observe that some of the rooms can be created specific for users or
+specific for APRS callsigns. Rooms without data-content just indicates that change has happened and client 
 can the use REST API to get updated information. 
 
 ======================== ============== =================================================
@@ -144,11 +144,22 @@ messages:<userid>        Message        Short messages - incoming message
 msgstatus:<userid>       Status         Short messages - status
 auth:<userid>                           Change in user role or authorizations
 bullboard                               Change in bulletin board content
+sign                                    Change in signs
+object                                  Change in JSON objects
+sharing                                 Change in sharings of objects 
 telemetry:<callsign>                    Change in telemetry data for a callsign
 notify:SYSTEM            Notification   User notification from system
 notify:ADMIN             Notification   User notification 
 notify:<userid>          Notification   User notification for specific user
 ======================== ============== =================================================
+
+
+User notification events
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+A special type of events are user-notifications. They are sent to users and the client-app can display them on screen. A typical way to do this is to show a icon showing the count of active notifications. The user can click to see the list of notifications which indicate systems events, that messages has arrived, etc.. 
+
+User notifications carry JSON encoded object with the following fields: 
 
 
 
