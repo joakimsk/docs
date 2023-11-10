@@ -144,8 +144,8 @@ messages:<userid>        Message        Short messages - incoming message
 msgstatus:<userid>       Status         Short messages - status
 auth:<userid>                           Change in user role or authorizations
 bullboard                               Change in bulletin board content
-sign                                    Change in signs
-object                                  Change in JSON objects
+sign                                    Change in signs *(db plugin)*
+object                                  Change in JSON objects *(db plugin)*
 sharing                                 Change in sharings of objects 
 telemetry:<callsign>                    Change in telemetry data for a callsign
 notify:SYSTEM            Notification   General system notications
