@@ -921,6 +921,7 @@ Source: `AprsObjectApi.java`
 Short messages
 --------------
 Source: `MailBoxApi.java`
+Se also info about `asynchrounous events <https://polaricserver.readthedocs.io/en/latest/cwebsocket.html#short-messages>`_
 
 +------------------------+-------+-+------------------------------------------------------+
 |`/mailbox`              | GET   |L| Get content of mailbox (list of messages)            |
