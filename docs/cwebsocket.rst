@@ -179,7 +179,7 @@ Logged in users can send messages to each other. Incoming messages can be sent a
 
 ============== ============== ===================================================
 msgId           integer        Unique message identifier
-status          integer        Delivery status0=unknkown, 1=success, -1=failure    
+status          integer        Delivery status: 0=unknkown, 1=success, -1=failure    
 time            Date           Timestamp 
 from            String         Sender (userid@server or callsign@APRS)
 to              String         Recipient 
