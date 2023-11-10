@@ -192,7 +192,8 @@ The 'msgstatus' room can be used to notify about delivery success or failure.
 
 ======== ========= ==================================================
  msgId    integer   Unique message identifier
- status   integer   Delivery status0=unknkown, 1=success, -1=failure  
+ status   integer   Delivery status: 0=unknkown, 1=success, -1=failure  
  info     String    Optional information
 ======== ========= ==================================================
 
+See also `REST API for short messages <https://polaricserver.readthedocs.io/en/latest/restapi.html#short-messages>`_
