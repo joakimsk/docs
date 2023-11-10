@@ -171,3 +171,28 @@ User notifications carry a JSON-encoded object with the following fields:
 
 The type field can be used to identify purposes of events. For example to report errors. *Polaric Webapp2* currently recognizes the following: ``loc``, ``check``, ``chat``, ``mail``, ``system``, ``error``, ``alert`` or ``info`` and uses different icons when displaying those. 
 
+
+Short messages
+^^^^^^^^^^^^^^
+
+Logged in users can send messages to each other. Incoming messages can be sent as asynchronous events through the 'message' room. A notification is sent in addition. The message has the following fields: 
+
+============== ============== ===================================================
+msgId           integer        Unique message identifier
+status          integer        Delivery status0=unknkown, 1=success, -1=failure    
+time            Date           Timestamp 
+from            String         Sender (userid@server or callsign@APRS)
+to              String         Recipient 
+read            boolean        True if read?
+outgoing        boolean        True if outgoing message
+text            String         Content
+============== ============== ===================================================
+
+The 'msgstatus' room can be used to notify about delivery success or failure. 
+
+======== ========= ==================================================
+ msgId    integer   Unique message identifier
+ status   integer   Delivery status0=unknkown, 1=success, -1=failure  
+ info     String    Optional information
+======== ========= ==================================================
+
