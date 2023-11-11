@@ -67,4 +67,4 @@ A smart-beaconing algorithm will be used when position changes. The frequency of
 To activate the settings
 ------------------------
 
-For each page of settings click the *'Update'* button to save your changes. To actually use the changes the server will typically need to be restarted. If a restart is necessary it will be clearly indicated. Click on the *'Restart'* button.
+For each page of settings click the *'Update'* button to save your changes. Changes to channels will take effect immediately. Other changes may need a restart to become active. 
