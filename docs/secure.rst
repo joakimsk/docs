@@ -28,13 +28,13 @@ A `certificate <https://en.wikipedia.org/wiki/Public_key_certificate>`_ is mainl
 **Alternative 1**: If the server runs on the same domain (for example `mydomain.org`) and machine as a frontend server which already have a certificate. We can use it. If this certificate is automatically installed by using a service like `Lets Encrypt <https://en.wikipedia.org/wiki/Let%27s_Encrypt>`_ and *certbot*, a certificate is placed at a certain location: You may check if the directory `/etc/letsencrypt/live/` exists. Then (as root) run the following command (assume that `mydomain.org` is the domain of your frontend server and the certificate):: 
 
     polaric-importcert-letsencrypt mydomain.org
-    
-It will install the certificate along with its private key in a keystore file available to *aprsd*. It will also generate and install the password for the keystore in the `server.ini` config file. 
 
 **Alternative 2** If you have already a certificate created *manually*, either `self-signed <https://en.wikipedia.org/wiki/Self-signed_certificate>`_ or signed by a CA (typically by generating a CSR, sending it to a CA for signing), you can import it into the keystore. How to generate CSRs etc. is outside the scope of this document. Assume that you have the certificate and that it is stored in a file cert.pem and the private key is stored in a file privkey.pem it can be importted this way (make sure the private key is not password-protected and that the domain name of the certificate matches the real domain of your webserver)::
 
     polaric-importcert cert.pem privkey.pem
     
+The scripts used here will install the certificate along with its private key in a keystore file available to *aprsd*. It will also generate and install the password for the keystore in the `server.ini` config file. 
+
 
 Activating HTTPS mode
 ^^^^^^^^^^^^^^^^^^^^^
