@@ -14,6 +14,9 @@ As long as we do not go through routers or firewalls where port 8081 (or whateve
 
 .. note::
     This is supported from aprsd version 2.12
+.. note::
+    From version 3.0, HTTPS will be mandatory for login-sessions to other than localhost
+
 
 Getting the certificate
 ^^^^^^^^^^^^^^^^^^^^^^^
