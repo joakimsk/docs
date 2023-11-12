@@ -13,8 +13,6 @@ Setting up aprsd with HTTPS
 As long as we do not go through routers or firewalls where port 8081 (or whatever port is used to the backend) is blocked, we can still use it but with HTTPS. The tricky part is the certificate. As soon we have a SSL certificate that can be used, the switch to HTTPS can be done. 
 
 .. note::
-    This is supported from aprsd version 2.12
-.. note::
     From version 3.0, HTTPS will be mandatory for login-sessions to other servers than localhost
 
 
