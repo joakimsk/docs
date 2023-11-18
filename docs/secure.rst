@@ -2,7 +2,7 @@
 Secure communication with the server
 ====================================
 
-The default setup is to use HTTPS between the client and the server and to use the frontend-webserver as a *proxy* for the backend (with a proper URL prefix). The backend uses a separate port (default is port 8081). Clients/frontend may alternatively be configured to use the backend *directly*. If using the backend directly from a different computer and if especially if communication is crossing subnets, the communication should always be secured.From version 3.0, HTTPS will be mandatory for login-sessions to other servers than localhost. 
+The default setup is to use HTTPS between the client and the server and to use the frontend-webserver as a *proxy* for the backend (with a proper URL prefix). The backend uses a separate port (default is port 8081). Clients/frontend may alternatively be configured to use the backend *directly*. If using the backend directly from a different computer and if especially if communication is crossing subnets, the communication should always be secured. From version 3.0, HTTPS will be mandatory for login-sessions to other servers than localhost. 
 
 .. note:: 
     The frontend webserver is configured with a `self-signed <https://en.wikipedia.org/wiki/Self-signed_certificate>`_ certificate. 
