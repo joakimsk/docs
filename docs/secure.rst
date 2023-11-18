@@ -1,52 +1,49 @@
 
-Securing the server
-===================
+Secure communication with the server
+====================================
 
-With the basic installation, the default setup is to use HTTPS between the client and the server and to use the frontend-webserver as a *proxy* for the backend (with a proper URL prefix). The backend uses a separate port (default is port 8081). Clients/frontend may alternatively be configured to use the backend *directly*. This may be an alternative in some cases. If using the backend directly from a different computer and if communication is crossing subnets, the communication **should** always be secured.
+The default setup is to use HTTPS between the client and the server and to use the frontend-webserver as a *proxy* for the backend (with a proper URL prefix). The backend uses a separate port (default is port 8081). Clients/frontend may alternatively be configured to use the backend *directly*. If using the backend directly from a different computer and if especially if communication is crossing subnets, the communication should always be secured.From version 3.0, HTTPS will be mandatory for login-sessions to other servers than localhost. 
 
-Setting up aprsd with HTTPS
----------------------------
+.. note: 
+    The frontend webserver is configured with a `self-signed <https://en.wikipedia.org/wiki/Self-signed_certificate>`_ certificate. 
+    This means that the webbrowser will not allow access before you explicitly make an exception for the certificate in question. 
+    If you plan to have many users, consider getting a certificate signed by a known CA. 
 
-It is possible to configure the backend to use HTTPS. The tricky part is the certificate. As soon we have a SSL certificate that can be used, the switch to HTTPS can be done. 
+Setting up the server with HTTPS
+--------------------------------
 
-.. note::
-    From version 3.0, HTTPS will be mandatory for login-sessions to other servers than localhost. It is by default configured to use the frontend webserver as a proxy. It is normally not necessary to the following but is recommended reading since also the frontend-server will need a certificate. 
-
+The frontend webserver is by default set up with HTTPS and a certficate. It is also possible to configure the backend to use HTTPS. The frontend webserver is configured in `/etc/apache2/sites-enabled/aprs_ssl.conf` and you may edit the path to the certificate and the private key there if necessary. A certificate can be imported into a keystore to make it available for the backend-server as well.
 
 Getting the certificate
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-A `certificate <https://en.wikipedia.org/wiki/Public_key_certificate>`_ is mainly a public key (cryptographic key) along with information about the identity of the owner of the certificate, that is signed by some `certification authority <https://en.wikipedia.org/wiki/Certificate_authority>`_ (CA). If we know and trust the CA (and its public key) we can check the digital signature of the certificate and we can trust that this certificate is authentic. When opening a connection to a HTTPS site a certificate of the server is first presented. If the client accepts it, we can use the public key of the server to securely establish an encrypted communication channel and authenticate the server (that it is really what it says it is). Web-browsers have installed a set of CA-certificates that it trusts. It is also possible for users to add or remove certificates and trust. We need a certificate for our *aprsd* server and there are mainly four ways to do it. The methods described here will install it in the `Java keystore <https://en.wikipedia.org/wiki/Java_KeyStore>`_ format to be used by *aprsd*. 
+A `certificate <https://en.wikipedia.org/wiki/Public_key_certificate>`_ is mainly a public key (cryptographic key) along with information about the identity of the owner of the certificate, that is signed by some `certification authority <https://en.wikipedia.org/wiki/Certificate_authority>`_ (CA). If we know and trust the CA (and its public key) we can check the digital signature of the certificate and we can trust that this certificate is authentic. When opening a connection to a HTTPS site a certificate of the server is first presented. If the client-browser accepts it, we can use the public key of the server to securely establish an encrypted communication channel and authenticate the server (that it is really what it says it is). Web-browsers have installed a set of CA-certificates that it trusts. It is also possible for users to add or remove certificates and trust. We need a certificate for our *aprsd* server and there are mainly four ways to do it. Scripts are available to install it in the `Java keystore <https://en.wikipedia.org/wiki/Java_KeyStore>`_ format to be used by *aprsd*. 
 
 **Alternative 0**: **This will be the default setting in Polaric Server 3.0.** A `self-signed <https://en.wikipedia.org/wiki/Self-signed_certificate>`_ certicate is generated by the package *ssl-cert* when installing the server. This certificate can be used by *Polaric Aprsd*, but clients browsers need to be told explicitly that this certificate is ok to use (make an exception from the general rule not to trust unverified certificates). The frontend (Polaric Webapp2) is also configured to use this certificate for secure connections. Client web-browsers should use HTTPS. To configure *aprsd* to use this certificate use this command (as root)::
     
     polaric-importcert-snakeoil
 
-**Alternative 1**: If the server runs on the same domain (for example `mydomain.org`) and machine as a frontend server which already have a certificate. We can use it. If this certificate is automatically installed by using a service like `Lets Encrypt <https://en.wikipedia.org/wiki/Let%27s_Encrypt>`_ and *certbot*, a certificate is placed at a certain location: You may check if the directory `/etc/letsencrypt/live/` exists. Then (as root) run the following command (assume that `mydomain.org` is the domain of your frontend server and the certificate):: 
+**Alternative 1**: If the server runs on some domain (for example `mydomain.org`) and machine as a frontend server which already have a certificate. We can use it for the *aprsd* as well. If this certificate is automatically installed by using a service like `Lets Encrypt <https://en.wikipedia.org/wiki/Let%27s_Encrypt>`_ and *certbot*, a certificate is placed at a certain location: You may check if the directory `/etc/letsencrypt/live/` exists. To make it available for *aprsd* run the following command as root (assume that `mydomain.org` is the domain of your frontend server and the certificate):: 
 
     polaric-importcert-letsencrypt mydomain.org
 
-**Alternative 2** If you have already a certificate created *manually*, either `self-signed <https://en.wikipedia.org/wiki/Self-signed_certificate>`_ or signed by a CA (typically by generating a CSR, sending it to a CA for signing), you can import it into the keystore. How to generate CSRs etc. is outside the scope of this document. Assume that you have the certificate and that it is stored in a file cert.pem and the private key is stored in a file privkey.pem it can be importted this way (make sure the private key is not password-protected and that the domain name of the certificate matches the real domain of your webserver)::
+**Alternative 2** A certificate can also be created *manually*, either `self-signed <https://en.wikipedia.org/wiki/Self-signed_certificate>`_ or signed by a CA (typically by generating a CSR, sending it to a CA for signing), you can configure the frontend-server to used and optionally import it into the keystore. How to generate CSRs etc. is outside the scope of this document. Assume that you have the certificate and that it is stored in a file cert.pem and the private key is stored in a file privkey.pem it can be importted this way (make sure the private key is not password-protected and that the domain name of the certificate matches the real domain of your webserver)::
 
     polaric-importcert cert.pem privkey.pem
     
 The scripts used here will install the certificate along with its private key in a keystore file available to *aprsd*. It will also generate and install the password for the keystore in the `server.ini` config file. 
 
 
-Activating HTTPS mode
-^^^^^^^^^^^^^^^^^^^^^
+Activating HTTPS mode in aprsd
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When the certificate is imported, you can activate HTTPS mode by editing `/etc/polaric-aprsd/server.ini` and make sure that the ``httpserver.secure`` property is set to *true* and restart the server. 
 
 
-Configuring the client
-^^^^^^^^^^^^^^^^^^^^^^
+Configuring the client-side
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can tell the clients to use the backend directly with HTTPS mode by enabling the following lines and disabling AJAXPREFIX and WSPREFIX (comment out) in `/etc/polaric-webapp2/config.js`::
 
     PORT(8081)
     SECURE(true)
-
-
-
-
