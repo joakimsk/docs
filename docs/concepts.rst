@@ -4,7 +4,7 @@ Concepts
 
 This chapter aims to give a guide to the architecture and main features of Polaric Server. 
 
-**This chapter is work in progress. Feedback is welcome!**
+**Anything still unclear? Feedback is welcome!**
 
 Software architecture overview
 ------------------------------
