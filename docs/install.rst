@@ -6,9 +6,6 @@ This is a description how to install the *Polaric Server* software on a *Debian*
 
 The packages should work on Debian stable systems. From mid-june 2023 this will mean 'bookworm'. 'Bullseye' should still work (the next version of Polaric will require Java-17). It should probably also work on 'unstable' or 'testing' as well as recent Debian based distros like Ubuntu, Mint, Raspbian, Armbian, etc. Windows 10/11 with Linux subsystem (With Debian or Ubuntu) should probably work as well though I haven't tested much. 
 
-.. note:: 
- If you install *polaric-database-plugin* on a 'bookworm', 'testing' or 'unstable' based system, there may be an issue with the newest version of *libpostgis-java*. This can be solved by using version 2.4.0 (available in 'bullseye'). Polaric Server 3.0 will fix this. 
-
 .. note::
  It is important that the computer on which to install *Polaric Server* has a clock with correct time. It is recommended to install a *`ntp`* client ('`apt install ntp`'). *Polaric Server* can alternatively use a GPS to adjust the host computer's clock. 
 
@@ -43,13 +40,15 @@ The program will be installed and started automatically. To check that it works,
 
 If things are ok, you will see new APRS messages arrive. Type CTRL-C to quit.
 
-You should now configure the server with your callsign and you should also review other configuration parameters like the aprs-is server, passcode, etc.. There is a web-interface for basic configuration. By default, it runs on port 8081. Start your web-browser and type in the url: 
+You should now configure the server with your callsign and you should also review other configuration parameters like the aprs-is server, passcode, etc. A quick way to set the default callsign is the command:: 
 
-`http://<hostname>:8081/config_menu` or if the server runs on the same computer: http://localhost:8081/config_menu You will be prompted for a username and a password. The package initially comes with an admin-user ('admin') with password 'polaric'. You should of course change the password. The configuration you usually need to do can be done through this web interface. It covers the most important settings. There are also some setting (for more advanced users) that can by changed manually by editing the file: `/etc/polaric-aprsd/server.ini` .
+   polaric-setpasswd
+
+It will ask you for a callsign. It will take effect next time you restart the aprsd. For more configuration, install the web-application (see below). It covers the most important settings. There are also some setting (for more advanced users) that can by changed manually by editing the file: `/etc/polaric-aprsd/server.ini`.
 
 For all details, see the configuration reference. Note that configuration through the web interface overrides the manual config in the server.ini file which then can be viewed as default settings.
 
-The server can be restarted through the web config interface or by issuing the command::
+The server can be restarted by issuing the command::
 
     polaric-restart 
     
@@ -60,9 +59,9 @@ Webapp2 is the new client software. Source code is on `Github <https://github.co
 
     apt-get install polaric-webapp2
 
-And you will get a basic installation with OSM (OpenStreetMap) and Norwegian maps. It connects to a local aprsd through port 8081. If you don't install the aprsd, the backend connection will simply fail. You may configure it to use a server at another location if you want to. It also installs mapcache (a plugin for Apache webserver) to cache map-tiles. It depends on the Apache Webserver and will configure it for this application.
+And you will get a basic installation with OSM (OpenStreetMap) and Norwegian maps. By default, it connects to a local aprsd. If you don't install the aprsd, the backend connection will simply fail (a red '!' on the toolbar indicates failed server connection). You may configure it to use a server at another location if you want to. It also installs *mapcache* (a plugin for Apache webserver) to cache map-tiles. It depends on the Apache Webserver and will configure it for this application.
 
-By default the webapp can be accessed through http://hostname/aprs where hostname is the ip adress or host name of the machine it is running on. If it is on your own computer, localhost or 127.0.0.1 should do.
+By default the webapp can be accessed through ``http://hostname/aprs`` where hostname is the ip adress or host name of the machine it is running on. If it is on your own computer, localhost or 127.0.0.1 should do.
 
 You can log in as *'admin'* using this web-interface. Then you have access to configuration and user-management of the system.
 
