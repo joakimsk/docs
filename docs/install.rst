@@ -61,9 +61,12 @@ Webapp2 is the new client software. Source code is on `Github <https://github.co
 
 And you will get a basic installation with OSM (OpenStreetMap) and Norwegian maps. By default, it connects to a local aprsd. If you don't install the aprsd, the backend connection will simply fail (a red '!' on the toolbar indicates failed server connection). You may configure it to use a server at another location if you want to. It also installs *mapcache* (a plugin for Apache webserver) to cache map-tiles. It depends on the Apache Webserver and will configure it for this application.
 
-By default the webapp can be accessed through ``http://hostname/aprs`` where hostname is the ip adress or host name of the machine it is running on. If it is on your own computer, localhost or 127.0.0.1 should do.
+By default the webapp can be accessed through ``https://hostname/aprs`` where hostname is the ip adress or host name of the machine it is running on. If it is on your own computer, localhost or 127.0.0.1 should do. 
 
 You can log in as *'admin'* using this web-interface. Then you have access to configuration and user-management of the system.
+
+..note:
+  From version 3.0, we use the https, protocol (http over SSL/TLS). By default a self-signed certificate will be used so the first time you access the web-interface, the browser will warn you that the certicicate is not valid. You would need to make an exception and accept this certificate. 
 
 Configuring the webapp
 ----------------------
