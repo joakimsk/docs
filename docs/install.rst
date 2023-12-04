@@ -92,7 +92,8 @@ Plugins are optional and easy to install. Plugins with available deb packages ar
    to generate historical trails, it can store user-data, etc. It comes with a scripts to help installing 
    and configuring the database, but it may need some additional configuration.
  * **polaric-ais-plugin**. It implements integration of AIS datastream (over TCP). It depends on polaric-aprsd.
- 
+
+If you want to write your own plugin, feel free to contact me for more information. 
  
 Making it a public service
 --------------------------
@@ -103,9 +104,10 @@ What to consider:
 
 * Where to run the server. In a data center? How to secure it, run it in a DMZ?
 * Domain name? Virtual host setup?
-* Secure the (frontend) webserver using TLS/SSL. Then you will need certificates for your domain. Consider if you want to force the users to use https always or when logging in to avoid that passwords or other sensitive information is sent in clear.
-* The backend (aprsd) by default uses a special port (8081). If the server is to be used across different subnets, I recommend to set up the frontend webserver as a proxy for this. This can easily be done with Apache for both REST API and websocket connections.
+* The (frontend) webserver is secured using TLS/SSL. By default with a simple self-signed certificate which is impractical for a more publc service. You would need to get a certificate for your domain.
+* The backend (aprsd) by default uses a special port (8081), but since the frontend is set up as a proxy for this, users don't need to be aware of this. If you want to access the backend from another machine, it is possible to secure it using SSL/TLS. 
 * You may need to set up some redirects and URL rewrites to make it work smoothly.
+
 
 
 
