@@ -66,7 +66,7 @@ By default the webapp can be accessed through ``https://hostname/aprs`` where ho
 You can log in as *'admin'* using this web-interface. Then you have access to configuration and user-management of the system.
 
 .. note::
-  From version 3.0, we use https by default (http over SSL/TLS). A self-signed certificate will be used, so the first time you access the web-interface, the browser will warn you about the certificate. You would need to make an exception and accept this certificate. You can change this latet if needed.
+  From version 3.0, we use https by default (http over SSL/TLS). A self-signed certificate will be used, so the first time you access the web-interface, the browser will warn you about the certificate. You would need to make an exception and accept this certificate. You can change this later if needed.
 
 Configuring the webapp
 ----------------------
