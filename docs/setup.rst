@@ -15,14 +15,14 @@ As soon as you have installed *webapp2*, and this is up and running, you can use
 * *Server config* (Basic server onfiguration)
 * *Own pos config* (Use server as a position tracker)
 * *Channels config* (set up channels)
-* *Synch nodes* (experimental synchronisation between instances)
+* *Synch nodes* (experimental: synchronisation between instances)
 
 Basic server settings
 ---------------------
 
-To start the setup, choose *'Server Config'* in the menu. You will now see a set of fields that can be filled in or changed. They are fairly self-explanatory. The first thing to do is to set your own callsign at the top and restart aprsd. 'NOCALL' is default but should set your own! The other settings can wait a little. They are as follows:
+To start the setup, choose *'Server Config'* in the menu. You will now see a set of fields that can be filled in or changed. They are fairly self-explanatory. If you haven't set the callsign yet, now is a good time. 'NOCALL' is default but should set your own! The other settings can wait a little. They are as follows:
 
-* **Igate settings**. *Polaric-aprsd* is capable of running as a full igate if required. If you set up the server with both internet and TNC/Radio it *may* be useful to activate the igate. Don't activate it if you don't need it. The igate use the channels whose names are entered as the primary RF and APRS-IS channels. Make sure that these are correctly configured *before* you activate the igate.
+* **Igate settings**. *Polaric-aprsd* is capable of running as a full igate if required. If you set up the server with both internet and TNC/Radio it *may* be useful to activate the igate. Don't activate it if you don't need it. The igate use the channels which are marked as the primary RF and APRS-IS channels (in channel-setup). Make sure that these channels are correctly configured *before* you activate the igate.
 
 * **Connection to another Polaric Server instance** (over APRS) for remote control and synchronization of SAR information (alias, tags, etc..). Servers to be connected, need to agree on a common secret (authentication key). *This is for advanced users*.
 
