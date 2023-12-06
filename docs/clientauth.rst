@@ -2,10 +2,10 @@
 Client authentication
 =====================
 
-In version 3.0 the login scheme is replaced with a scheme more suited for REST API and mobile-apps. 
-Clients (users) with web-browsers or mobile-apps, can log in to the server using the username and a password. The client code may call a method POST to a url ``directLogin`` with the form parameters: 'username' and 'password'. If login is successful, a session-key (base64 encoded, 64 characters long), will be returned and can be used in authenticating subsequent requests to the server as well when establishing websocket connections. This key should be treated as a secret. It is not persistent, so when the server reboots users have to log-in again. 
+Version 3.0 comes with a login and authentication scheme which is better suited for REST API and mobile-apps. 
+Clients (users) with web-browsers or mobile-apps, can log in to the server using the username and a password. The client may call a method ``POST`` to a url ``directLogin`` with the form parameters: 'username' and 'password'. If login is successful, a *session-key* (base64 encoded, 64 characters long), will be returned and can be used in authenticating subsequent requests to the server as well when establishing websocket connections. This key should be treated as a secret. It is not persistent, so when the server reboots users have to log-in again. 
 
-After a successful login the client can call the GET method on the url ``authStatus`` which will return info on server capabilities and what authorizations the users have. If authentication fails, it returns an error code (401 unauthorized). If authentication fails, a GET on an alternative ``authStatus2`` can be used to get some information about the server-session anyway.  
+After a successful login the client can call the ``GET`` method on the url ``authStatus`` which will return info on server capabilities and what authorizations the users have. If authentication fails, it returns an error code (401 unauthorized). If authentication fails, a ``GET`` on an alternative ``authStatus2`` can be used to get some information about the server-session anyway.  
 
 .. note::
     This is supported from aprsd version 3.0
