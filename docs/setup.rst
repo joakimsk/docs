@@ -59,7 +59,7 @@ Positioning
 
 *Polaric-aprs* can be set up to send position reports like a tracker. It will only send such reports on APRS-IS unless you explicitly allow it to send it on RF. A digipeater path would be used on RF. You may use a GPS on a serial port and you may also use the NMEA packets from the GPS to adjust the clock. If GPS is not used or if it doesn't get a fix, we may use a default fixed position (given in UTM format). 
 
-A smart-beaconing algorithm will be used when position changes. The frequency of the reporting will depend on the spead and direction of the movement. Min-pause is the minimum time between transmissions. Max-pause is the maximum time between transmissions. Min-distance is the distance (should be called max-distance) moved before a transmission is generated and max-turn is the maximum change in direction before a transmission is generated. 
+A smart-beaconing algorithm will be used when position changes. The frequency of the reporting will depend on the speed and direction of the movement. Min-pause is the minimum time between transmissions. Max-pause is the maximum time between transmissions. Min-distance is the distance (should be called max-distance) moved before a transmission is generated and max-turn is the maximum change in direction before a transmission is generated. 
 
 .. image:: img/sc2.x.png
 
