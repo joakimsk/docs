@@ -9,7 +9,7 @@ This chapter aims to give a guide to the architecture and main features of Polar
 Software architecture overview
 ------------------------------
 
-*Polaric-Server* is a client/server application, where users run the client-app in their web-browsers. The figure below shows the most important parts of this. A server typically serves the *Polaric-Webapp2* (client) component which is mainly written in Javascript. It functions a GIS client that can browse map-layers from various sources, let the user draw featurs on the map, etc. It is based on `OpenLayers <http://www.openlayers.org>`_. 
+*Polaric-Server* is a client/server application, where users run the client-app in their web-browsers or as smartphone apps. The figure below shows the most important parts of this. A server typically serves the *Polaric-Webapp2* (client) component which is mainly written in Javascript. It functions as a GIS client that can browse map-layers from various sources, let the user draw featurs on the map, etc. It is based on `OpenLayers <http://www.openlayers.org>`_. 
 
 .. image:: img/architecture1.jpg
 
@@ -17,13 +17,13 @@ Software architecture overview
 
 It is also a client for the *Polaric-aprsd*; we call it the *'backend-server'*. It is a http server that runs on a different port than the frontend. *Polaric-aprsd* handles more dynamic position information, typically moving objects. It provides a REST API to clients for performing various operation, as well as a Websockets to push updates and notifications asynchronously. It offers an innovative way of filtering what the user sees (and how), and a way to use tags to help filtering and searching items. It offers user-login and role-based authorization.
 
-Aprsd is primarily an *APRS client* (and even an APRS igate if configured to do so); it can use a radio or the APRS-IS network to send or receive APRS packets. It is not limited to APRS, it can handle other datasources like e.g. AIS by using *plugins*. Plugins is a way to extend aprsd's functionality. A special and important plugin is the *database-plugin* which uses a PostgreSQL database (with PostGIS extension) to extend the capabilities of aprsd. It can store tracking-data and let users search historical trails or see snapshots at particular time-instants. It can store user-defined features and it can synchronize some information with other server-instances.  
+Aprsd is primarily an *APRS client* (and even an APRS igate if configured to do so); it can use a radio or the APRS-IS network to send or receive APRS packets. It is not limited to APRS; it can handle other datasources like e.g. AIS by using *plugins*. Plugins is a way to extend aprsd's functionality. A special and important plugin is the *database-plugin* which uses a PostgreSQL database (with PostGIS extension) to extend the capabilities of aprsd. It can store tracking-data and let users search historical trails or see snapshots at particular time-instants. It can store user-defined features and it can synchronize some information with other server-instances.  
 
 
 Interoperability and extensibility
 ----------------------------------
 
-Polaric Server is an open-source client/server application that supports interoperability and extensibility. Interoperability refers to the ability of different systems, applications, or components to exchange information and work together effectively. Extensibility is the ability to add functionality with minimal need to change the core application. All this can be achieved through:
+Polaric Server is a free and open-source client/server application that supports interoperability and extensibility. Interoperability refers to the ability of different systems, applications, or components to exchange information and work together effectively. Extensibility is the ability to add functionality with minimal need to change the core application. All this can be achieved through:
 
 * *Standardized Protocols*: The client and server communicate using standardized protocols, such as HTTP or WebSocket, which allow systems developed by different vendors or using different technologies to interact seamlessly.
 
@@ -42,23 +42,23 @@ Supported geographical objects
 Polaric aprsd is designed to  handle geographical points and display them on a map. 
 
 Tracker objects. 
-   APRS stations or objects. AIS vessels, etc.. They can be moving and can have 
-   significant metainformation attached, including timestamp. They have *trails* of movement. A trail is a list of updates (each with a timestamp and position) covering a timespan.  
+   APRS stations or objects. AIS vessels, etc.. They can be moving and can have significant metainformation attached, including timestamp. 
+They have *trails* of movement. A trail is a list of updates (each with a timestamp and position) covering a timespan.  
 Signs. 
-   Simpler *"Lightweight"* objects that are *static* (non moving). They are shown with smaller 
-   icons (and no label) on the map. A sign can have a link to an image or web-page. 
+   Simpler *"Lightweight"* objects that are *static* (non moving). They can be shown with smaller 
+   icons and have typically no label on the map. A sign can provide a link to an image or web-page. 
 Other types of objects. 
    For example non-moving objects with more semantics than simple signs. Defined by plugins. 
 
 A *database* (if using the *database plugin*) can store signs or updates to tracker-objects. If this plugin is installed and active, it can provide historical seach and show locations on earlier time-instants or trails of movements in given time-spans. 
 
-Clients like *Polaric Webapp2* are GIS applications that can handle maps and map-layer, as well as more static geographical features to be drawn on maps, in addition to more dynamic information from aprsd backends. 
+Clients like *Polaric Webapp2* are GIS applications that can handle maps and map-layers, as well as more static geographical features to be drawn on maps, in addition to more dynamic information from aprsd backends. 
 
 
 Tags
 ----
 
-Geographical points (stations, objects.. ) can be tagged with keywords that can be used in searching or more semantics can be defined in filter profile scripts.
+Geographical points (trackers, stations, objects.. ) can be tagged with keywords that can be used in searching or more semantics can be defined in filter profile scripts.
 
 Tags can ble single words or composite words with the '.' as a delimiter. A composite tag x.y implies the prefix x, for example a tag 'APRS.infra' also means 'APRS'.
 
