@@ -120,7 +120,9 @@ View Profiles
 
 A profile is identified by a name. It consists of zero or more of rules each with a predicate and an action. The rule set is applied to each item. If predicate evaluates to true, the associated action is performed. If a profile perform multiple actions for an item, their results are combined (see below).
 
-We may also include the rules from other profiles. An include clause can appear anywhere in the list of rules, but normally, ``INCLUDE``'s should come before rules::
+We may also include the rules from other profiles. An include clause can appear anywhere in the list of rules, but normally, ``INCLUDE``'s should come before rules. 
+
+``INCLUDE TAGS`` means that the profile should show items that have at least one of the specified tags::
 
  PROFILE <ident> {
      [ EXPORT '"'<description>'"' => PUBLIC | '{' <group-list> '}' ; ]
