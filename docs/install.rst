@@ -42,9 +42,14 @@ If things are ok, you will see new APRS messages arrive. Type CTRL-C to quit.
 
 You should now configure the server with your callsign and you should also review other configuration parameters like the aprs-is server, passcode, etc. A quick way to set the default callsign is the command:: 
 
-   polaric-setpasswd
+   polaric-setcall
 
 It will ask you for a callsign. It will take effect next time you restart the aprsd. For more configuration, install the web-application (see below). It covers the most important settings. There are also some setting (for more advanced users) that can by changed manually by editing the file: `/etc/polaric-aprsd/server.ini`.
+
+To create users beyond the default admin-user, you can use polaric-passwd, which depends on htpasswd. To install htpasswd, install the package apache2-utils.
+   
+   apt-get install apache2-utils
+   polaric-passwd
 
 For all details, see the configuration reference. Note that configuration through the web interface overrides the manual config in the server.ini file which then can be viewed as default settings.
 
