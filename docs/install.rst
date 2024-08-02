@@ -91,12 +91,13 @@ Installing plugins
 
 Plugins are optional and easy to install. Plugins with available deb packages are:
 
- * **polaric-db-plugin**. It uses a `PostgreSQL <https://www.postgresql.org>`_ database for storage and search. It can store APRS traffic 
-   to generate historical trails, it can store user-data, etc. It comes with a scripts to help installing 
+ * **polaric-db-plugin**. It uses a `PostgreSQL <https://www.postgresql.org>`_ database for storage and search. It can store APRS     traffic to generate historical trails, it can store user-data, etc. It comes with a scripts to help installing 
    and configuring the database, but it may need some additional configuration.
  * **polaric-ais-plugin**. It implements integration of AIS datastream (over TCP). It depends on polaric-aprsd.
 
-If you want to write your own plugin, feel free to contact me for more information. 
+I hope to be able to write documentation for the plugins soon. The database-plugin can be complex to setup and requires some database-knowledge. Feel free to contact me for assistance. I recommend to install the basic aprsd first and be sure that it is working before you add plugins.. 
+
+If you want to write your own plugin, feel free to do so, and feel free to contact me for more information. 
  
 Making it a public service
 --------------------------
