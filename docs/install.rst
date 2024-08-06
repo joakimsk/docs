@@ -18,21 +18,21 @@ We offer DEB packages to help you install the software. To get started you first
     
 You will need to install my cryptographic public key (PGP) to verify the authenticity of repository and the packages. You may do the following. This means that you trust packages signed with my key::
 
-    apt-get install gnupg2 dirmngr
+    apt install gnupg2 dirmngr
     apt-key del 89E7229CFFD59B2F
     gpg --keyserver keys.openpgp.org --recv-keys 89E7229CFFD59B2F
     gpg --export --armor 3E61003E24632585EB3DFE3D89E7229CFFD59B2F | tee /etc/apt/trusted.gpg.d/polaricserver.asc
 
 To re-load metadata from the repositories type the command::
  
-    apt-get update
+    apt update
     
 Installing the APRS daemon
 --------------------------
 
 The APRS daemon (polaric-aprsd) is a server program that processes APRS data (from/to APRS-IS and/or TNC) and presents it to the web-application (or it may be set up as an igate). It can be run as a standalone application (e.g. as a igate) or function as a backend server for the web-application and can respond to HTTP requests and deliver XML-data or HTML pages::
 
-   apt-get install polaric-aprsd
+   apt install polaric-aprsd
 
 The program will be installed and started automatically. To check that it works, take a look at the log file::
 
@@ -57,13 +57,13 @@ Installing the web-application
 
 Webapp2 is the new client software. Source code is on `Github <https://github.com/PolaricServer/webapp2>`_. The deb package installs this automatically assuming that an aprsd instance is running on the same machine. It is possible to install it without aprsd (for advanced users). You can install the web-application component as follows::
 
-    apt-get install polaric-webapp2
+    apt install polaric-webapp2
 
 And you will get a basic installation with OSM (OpenStreetMap) and Norwegian maps. By default, it connects to a local aprsd. If you don't install the aprsd, the backend connection will simply fail (a red '!' on the toolbar indicates failed server connection). You may configure it to use a server at another location if you want to. It also installs *mapcache* (a plugin for Apache webserver) to cache map-tiles. It depends on the Apache Webserver and will configure it for this application.
 
 By default the webapp can be accessed through ``https://hostname/aprs`` where hostname is the ip adress or host name of the machine it is running on. If it is on your own computer, localhost or 127.0.0.1 should do. 
 
-You can log in as *'admin'* using this web-interface. Then you have access to configuration and user-management of the system. 
+You can log in as *'admin'* using this web-interface. Default password *'polaric'*. Then you have access to configuration and user-management of the system. You can change the password using the *'polaric-passwd'* command or the web interface.  
 
 .. note::
   From version 3.0, we use https by default (http over SSL/TLS). A self-signed certificate will be used, so the first time you access the web-interface, the browser will warn you about the certificate. You would need to make an exception and accept this certificate. You can change this later if needed.
