@@ -27,10 +27,6 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
 |                        +-------+-+------------------------------------------------------+
 |                        | PUT   |A| Update position of this server (symbol, latlong pos) |
 +------------------------+-------+-+------------------------------------------------------+
-|`/system/sarmode`       | GET   |S| SAR mode info. Deprecated                            |
-|                        +-------+-+------------------------------------------------------+
-|                        | PUT   |S| Update SAR mode info. Deprecated                     |
-+------------------------+-------+-+------------------------------------------------------+
 |`/system/icons/{dir}`   | GET   |O| List of icons available in a subdirectory            |
 +------------------------+-------+-+------------------------------------------------------+
 |`/scripts`              | GET   |A| Get list of available commands/scripts               |
@@ -85,16 +81,6 @@ Source: `AdminApi.java` and `ShellScriptApi.java`
    :>json string sym: Symbol
    :>json string symtab: Symbol table
    :>json double[] pos: Position (longitude, latitude);
-   
-   
-.. http:get:: /system/sarmode
-
-   Deprecated - do not use
-   
-   
-.. http:put:: /system/sarmode
-
-   Deprecated - do not use
    
    
 .. http:get:: /system/icons/(dir)
