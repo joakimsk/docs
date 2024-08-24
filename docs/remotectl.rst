@@ -68,9 +68,6 @@ TAG <callsign> <tag>
 RMTAG <callsign> <tag> 
     Remove a tag from the given point object.
 
-SAR <ON|OFF> <user-id> <filter> <reason> 
-    Turn on or off SAR mode. The user-id, filter and reason arguments are used when first argument is 'ON'. user-id is the login-identifier of the user that initiated SAR mode, filter is a regular expression describing what callsigns to be hidden or 'NONE' if no filtering should be done on callsigns. reason is a short textual description.
-
 USER <userid> 
     Announce that user is logged on to the system. NB: The userid can be encrypted (see below).
 
