@@ -43,7 +43,7 @@ Polaric aprsd is designed to  handle geographical points and display them on a m
 
 Tracker objects. 
    APRS stations or objects. AIS vessels, etc.. They can be moving and can have significant metainformation attached, including timestamp. 
-They have *trails* of movement. A trail is a list of updates (each with a timestamp and position) covering a timespan.  
+   They have *trails* of movement. A trail is a list of updates (each with a timestamp and position) covering a timespan.  
 Signs. 
    Simpler *"Lightweight"* objects that are *static* (non moving). They can be shown with smaller 
    icons and have typically no label on the map. A sign can provide a link to an image or web-page. 
