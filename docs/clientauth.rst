@@ -38,7 +38,7 @@ The data field consists of the following (separated by semicolon):
     A number unique for each REST call. The webapp generates a 64 bit (8 bytes) random number. This is base64 encoded. 
 **hmac** 
     A HMAC hash using the key returned by the ``directLogin`` call and a concatenation of the nonce and a 
-    SHA256 hash of the request body if it exists. The HMAC is base64 encoded.
+    SHA256 hash (base64 encoded) of the request body if it exists. The HMAC is base64 encoded. 
 **role** (optional)
     We can add a temporary role-id if user is authorized for more than one role. 
 
